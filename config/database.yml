@@ -11,11 +11,11 @@ default: &default
 
 development:
   <<: *default
-  database: <application>_development
+  database: investment-tracking_development
 
 test:
   <<: *default
-  database: <application>_test
+  database: investment-tracking_test
 
 production:
   <<: *default

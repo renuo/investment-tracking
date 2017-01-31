@@ -28,6 +28,7 @@ gem 'typescript-rails'
 gem 'uglifier'
 
 group :development do
+  gem 'listen'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'i18n-docs'
@@ -41,7 +42,6 @@ group :development, :test do
   gem 'byebug'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'quiet_assets'
 end
 
 group :test do
