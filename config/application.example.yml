@@ -1,5 +1,5 @@
 # Use /etc/hosts to change the dns to 127.0.0.1, see bin/setup
-APP_HOST: 'investment-tracking.dev'
+APP_HOST: '<application>.dev'
 APP_PORT: '3000'
 
 # Mail config
@@ -15,7 +15,7 @@ DEVISE_PEPPER: 'rake secret'
 
 # Newrelic
 NEW_RELIC_LICENSE_KEY: 'TO DO'
-NEW_RELIC_APP_NAME: 'investment-tracking-<branch>'
+NEW_RELIC_APP_NAME: '<application>-<branch>'
 
 # Add 3 new projects for develop/master/testing at https://app.getsentry.com/organizations/renuo/projects/new/
 SENTRY_DSN: ''
@@ -32,11 +32,11 @@ RENUO_UPLOAD_API_KEY: ''
 RENUO_UPLOAD_SIGNING_URL: ''
 # Host where the images are available
 RENUO_UPLOAD_CDN_HOST: ''
-RENUO_UPLOAD_APP_NAME: 'investment-tracking-<branch>'
+RENUO_UPLOAD_APP_NAME: '<application>-<branch>'
 
 # This is used to seed your database
 # Use a random password for develop/master/testing
-ADMIN_EMAIL: 'yourname+investment-tracking>@example.com' # change your name and domain to @renuo.ch
+ADMIN_EMAIL: 'yourname+<application>@example.com' # change your name and domain to @renuo.ch
 ADMIN_PASSWORD: 'developer'
 
 # Have 3 different Google Analytics key so not to mix up data from different applications
