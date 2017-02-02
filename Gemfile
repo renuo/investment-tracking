@@ -8,6 +8,7 @@ gem 'pg'
 gem 'awesome_print'
 gem 'sass-rails'
 gem 'slim-rails'
+gem 'uglifier'
 
 group :development do
   gem 'listen'
