@@ -39,6 +39,7 @@ group :production do
   gem 'rack-timeout'
   gem 'rails_12factor'
   gem 'sentry-raven'
+  gem 'puma'
 end
 
 group :lint do
