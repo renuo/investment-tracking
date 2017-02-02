@@ -20,20 +20,8 @@ module InvestmentTracking
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :en
 
-    if Rails.env.production?
-      config.middleware.use Rack::GoogleAnalytics, tracker: ENV['GOOGLE_ANALYTICS_ID']
-
-      config.middleware.insert_before 0, 'Rack::Cors' do
-        allow do
-          origins '*'
-          resource '/assets/*', headers: :any, methods: %i(get options)
-        end
-      end
-    end
-
     config.generators do |g|
       g.test_framework :rspec
     end
-
   end
 end

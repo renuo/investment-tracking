@@ -6,22 +6,25 @@ addons:
     - zsh
   postgresql: '9.4'
 services:
-  - postgresql
-bundler_args: --without production development --deployment --jobs=3 --retry=3
+- postgresql
+bundler_args: "--without production development --deployment --jobs=3 --retry=3"
 cache:
   bundler: true
   apt: true
   directories:
-    - coverage
-    - node_modules
+  - coverage
+  - node_modules
 before_install:
-  - export TZ=Europe/Zurich
+- export TZ=Europe/Zurich
 before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-# if you need tsd  - echo {\"token\":\"$TSDRC_TOKEN\"} > .tsdrc
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- echo {\"token\":\"$TSDRC_TOKEN\"} > .tsdrc
 script: bin/setup
 notifications:
   email:
     on_success: change
     on_failure: always
+env:
+  global:
+    secure: sKZr0tdjS4b6g0WqWvWFvKYaeDIhYnbMry7H+BAYM1sSbu8ohx48MVQg7qvuXAmETb+N1iHPeW/eoyAC5AF54OHE2Ck/CPoVzYt//nVFcO6A3LSrUf8gCcegmNGZQfwqfoWHKaIeOMoxKFhZW0ecvw4gG2OAnzt2L5MZvOUj/l2GTx5wkDifEji5jvj8sSYmK5O9XI/N1/Tqub63k3i0RYksLCZA8Jbu3qd4j8qFPFMP/9viZwSM2aywWUw4qe0A06gsBydXSXXIPbhUkMh3uEFfHgJXBNJ/KoCkclpale6zDOkAyD+dv82BtN0MsIbzmyV+eeoE0P+DXBQFbJgR5xViDf9quYXrj/g/bZ5Y5ZkMrvwwMqznmOaERJMFBS1OtIncBI17G4umvL+4MpVdiWN5MWfPmbsXkBndnyuhoE2+yIRj+IVpYYFJkAGozlzYRsds6ZP7CUdDTqgb7QyuqgZIh4wuNZdRjnjgVV+cDuFfqhNA+17YL/pdG/coHiiWwRTyXvwZOeP/LP5B/0qJsf1x8sJVRd0wKREg26HmEcdoVrN4IhRCGOby1fRB91enew1gM9tMZ5+7J16ba5qxCtUGfqcjXkzak2OTN1Cw1apADsRmT2JrgnA+iFoheTUgk83PeamUR6Q3fisWYfYWGarO3gFSaQAZTxTu/06m15M=
