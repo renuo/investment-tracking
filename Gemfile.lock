@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/rails/activeresource.git
+  revision: 5bb25e946c206e77f6f9b82c6a5ea8df31b9efc1
+  branch: master
+  specs:
+    activeresource (5.0.0)
+      activemodel (> 4.2, < 6)
+      activemodel-serializers-xml (~> 1.0)
+      activesupport (> 4.2, < 6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -29,6 +39,11 @@ GEM
       globalid (>= 0.3.6)
     activemodel (5.0.1)
       activesupport (= 5.0.1)
+    activemodel-serializers-xml (1.0.1)
+      activemodel (> 5.x)
+      activerecord (> 5.x)
+      activesupport (> 5.x)
+      builder (~> 3.1)
     activerecord (5.0.1)
       activemodel (= 5.0.1)
       activesupport (= 5.0.1)
@@ -42,6 +57,8 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     arel (7.1.4)
     ast (2.3.0)
+    autoprefixer-rails (6.7.1)
+      execjs
     awesome_print (1.7.0)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -53,6 +70,9 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.3.7)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     brakeman (3.4.1)
     builder (3.2.3)
     byebug (9.0.6)
@@ -277,9 +297,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activeresource!
+  autoprefixer-rails
   awesome_print
   better_errors
   binding_of_caller
+  bootstrap-sass
   brakeman
   byebug
   capybara
