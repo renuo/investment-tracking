@@ -9,6 +9,9 @@ gem 'awesome_print'
 gem 'sass-rails'
 gem 'slim-rails'
 gem 'uglifier'
+gem 'activeresource', github: 'rails/activeresource', branch: 'master'
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
 
 group :development do
   gem 'listen'
