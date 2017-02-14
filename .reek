@@ -1,4 +1,8 @@
 ---
+UtilityFunction:
+  public_methods_only: true
+NestedIterators:
+  max_allowed_nesting: 2
 IrresponsibleModule:
   enabled: false
 Attribute:
