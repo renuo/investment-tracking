@@ -1,21 +1,22 @@
 h1 Investment tracking
 
 .container
-  - @aggregated_values.each do |value|
+  - @aggregated_datas.each do |value|
     .row
       .col-md-3
-        p = value[:name]
+        p = value['Benutzer']
       .col-md-1
         p 0h
       .col-md-4
         .progress
-          .progress-bar.progress-bar-success[role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="80" style="width: calc(0% + 80/100*#{value[:all_investment_time]}%)"] = value[:all_investment_time].round(2)
+          .progress-bar.progress-bar-success[role='progressbar' aria-valuenow='10' aria-valuemin='0' aria-valuemax='80'
+          style='width: calc(0% + 80/100*#{value['Difference_investment_time']}%)']
+            = value['Difference_investment_time']
       .col-md-1
         p 80h
       .col-md-3
-        p Investment time total: #{value[:all_investment_time].round(2)} h
-        p Investment time used: 0 h
-        p Investment time open: #{value[:all_investment_time].round(2)} h
+        p Investment time total: #{value['Investment_time_sum']} h
+        p Investment time used:  #{value['Investment_time_used']}  h
+        p Investment time open: #{value['Difference_investment_time']} h
         br
 
-= @count_times
