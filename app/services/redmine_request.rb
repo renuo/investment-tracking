@@ -1,41 +1,56 @@
 class RedmineRequest
-  def login
-    response = perform_request
-    response2 = perform_request2
-    response3 = perform_request3
-    if response.code == '200'
-      json_response = JSON.parse(response.body)
-      json_response2 = JSON.parse(response2.body)
-      json_response3 = JSON.parse(response3.body)
-      { status: :ok, api_key: json_response['time_entries'] + json_response2['time_entries'] + json_response3['time_entries'] }
-    else
-      { status: :unauthorized }
-    end
+  def retrieve_investment_time
+    http_request(create_uri_investment_time)
   end
 
-  def perform_request
-    uri = URI('https://redmine.renuo.ch/time_entries.json?key=' + ENV['REDMINE_API_KEY'] + '&limit=100')
-    req = Net::HTTP::Get.new(uri)
-
-    Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
-      http.request(req)
-    end
+  def retrieve_time_entries
+    http_request(create_uri_time_entries)
   end
 
-  def perform_request2
-    uri = URI('https://redmine.renuo.ch/time_entries.json?key=' + ENV['REDMINE_API_KEY'] + '&limit=100&offset=100')
-    req = Net::HTTP::Get.new(uri)
+  private
 
-    Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
-      http.request(req)
-    end
+  def create_uri_time_entries
+    URI(protocol + host + hours_report_path + query + key)
   end
 
-  def perform_request3
-    uri = URI('https://redmine.renuo.ch/time_entries.json?key=' + ENV['REDMINE_API_KEY'] + '&limit=100&offset=200')
-    req = Net::HTTP::Get.new(uri)
+  def create_uri_investment_time
+    URI(protocol + host + investment_report_path + query + key)
+  end
 
-    Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+  def protocol
+    'https://'
+  end
+
+  def host
+    'redmine.renuo.ch'
+  end
+
+  def hours_report_path
+    '/time_entries/report.csv'
+  end
+
+  def investment_report_path
+    '/projects/renuo-investments/time_entries/report.csv'
+  end
+
+  def query
+    '?utf8=%E2%9C%93&
+f%5B%5D=spent_on&
+op%5Bspent_on%5D=%3E%3D&
+v%5Bspent_on%5D%5B%5D=2017-01-30&
+f%5B%5D=&
+columns=month&
+criteria%5B%5D=user&'
+  end
+
+  def key
+    'key=' + ENV['REDMINE_API_KEY']
+  end
+
+  def http_request(url)
+    req = Net::HTTP::Get.new(url)
+
+    Net::HTTP.start(url.hostname, url.port, use_ssl: true) do |http|
       http.request(req)
     end
   end
