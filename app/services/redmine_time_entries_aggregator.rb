@@ -1,39 +1,56 @@
 class RedmineTimeEntriesAggregator
-  def redmine_response
-    RedmineRequest.new.login[:api_key]
+  def generate_aggregated_data(csv_time_entries, csv_investment_time)
+    calculated_time_entries = calculate_investment_time_user(csv_time_entries)
+    add_difference = difference_taken_and_open(calculated_time_entries, csv_investment_time)
+    add_no_investment_time_user(add_difference)
   end
 
-  def count_entries
-    redmine_response.count
-  end
+  private
 
-  def brutto_hours_per_user
-    sum_entries(redmine_response)
-  end
-
-  def id_and_user
-    find_name_of_id(redmine_response)
-  end
-
-  def all_investment_time_per_user
-    calculate_investment_time_user(brutto_hours_per_user)
-  end
-
-  def find_name_of_id(redmine_data)
-    redmine_data.group_by { |data_id| data_id['user']['id'] }.map do |k, v|
-      Hash[:id, k, :name, v.group_by { |data_name| data_name['user']['name'] }.map { |key, _value| key } .reduce(:+)]
+  def calculate_investment_time_user(csv_datas)
+    csv_datas.each do |data|
+      data['Investment_time_sum'] = data['Gesamtzeit'].to_f / 5
     end
   end
 
-  def sum_entries(redmine_data)
-    redmine_data.group_by { |data_id| data_id['user']['id'] }.map do |k, v|
-      Hash[:id, k, :hours, v.group_by { |data_hours| data_hours['hours'] }.map { |key, _value| key } .reduce(:+), :name, v.group_by { |data_name| data_name['user']['name'] }.map { |key, _value| key } .reduce(:+)]
+  def difference_taken_and_open(csv_time_datas, csv_investment_datas)
+    # [{
+    #   name: 'Alicia',
+    #   worked_hours: 120,
+    #   worked_investment_hours: 8
+    # }]
+    #
+    # worked_hours = csv_time_datas.map do |row|
+    #   { name: row['Benutzer'], worked_hours: row['Gesamtzeit'] }
+    # end
+    #
+    # worked_investment_hours = csv_time_datas.map do |row|
+    #   { name: row['Benutzer'], worked_investment_hours: row['Gesamtzeit'] }
+    # end
+    #
+    # (worked_hours + worked_investment_hours).group_by do |hour_person_pair|
+    #   hour_person_pair[:name]
+    # end.map{|k,v| v.reduce(:merge)}
+    #
+    # users = []
+
+    csv_time_datas.each do |all|
+      csv_investment_datas.each do |taken|
+        taken_investment_time = taken['Gesamtzeit']
+        if all['Benutzer'] == taken['Benutzer']
+          all['Investment_time_used'] = taken_investment_time
+          all['Difference_investment_time'] = (all['Investment_time_sum'].to_f - taken_investment_time.to_f).round(2)
+        end
+      end
     end
   end
 
-  def calculate_investment_time_user(grouped_redmine_data)
-    grouped_redmine_data.each do |data|
-      data[:all_investment_time] = data[:hours] / 5
+  def add_no_investment_time_user(difference_data)
+    difference_data.each do |data|
+      unless data.key?('Investment_time_used')
+        data['Investment_time_used'] = 0
+        data['Difference_investment_time'] = data['Investment_time_sum']
+      end
     end
   end
 end
