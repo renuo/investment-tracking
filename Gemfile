@@ -12,6 +12,8 @@ gem 'uglifier'
 gem 'activeresource', github: 'rails/activeresource', branch: 'master'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
+gem 'webmock'
+
 
 group :development do
   gem 'listen'
