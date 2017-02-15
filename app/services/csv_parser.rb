@@ -1,16 +1,29 @@
 class CsvParser
   require 'csv'
 
-  def parse_to_hash(time_entries)
-    parse_from_csv_to_hash(time_entries)
+  def initialize(request)
+    @csv_body = request.body
+    @csv_entries = nil
+    @keys = nil
+  end
+
+  def parse_to_hash
+    parse_csv
+    extract_keys
+    convert_values_to_hashes
   end
 
   private
 
-  def parse_from_csv_to_hash(time_entries)
-    csv = CSV.parse(time_entries.body, col_sep: ';')
-    key = csv.first
-    values = csv[1..-1]
-    values.map { |value| key.zip value }.map(&:to_h)
+  def parse_csv
+    @csv_entries = CSV.parse(@csv_body, col_sep: ';')
+  end
+
+  def extract_keys
+    @keys = @csv_entries.shift
+  end
+
+  def convert_values_to_hashes
+    @csv_entries.map { |value| @keys.zip value }.map(&:to_h)
   end
 end
