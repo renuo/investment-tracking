@@ -5,8 +5,12 @@ NestedIterators:
   max_allowed_nesting: 2
 IrresponsibleModule:
   enabled: false
+DuplicateMethodCall:
+  max_calls: 2
 Attribute:
   enabled: false
+TooManyInstanceVariables:
+  max_instance_variables: 10
 "app/helpers":
   UtilityFunction:
     enabled: false
