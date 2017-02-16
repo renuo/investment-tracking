@@ -16,7 +16,7 @@ class CsvParser
   private
 
   def parse_csv
-    @csv_entries = CSV.parse(@csv_body, col_sep: ';')
+    @csv_entries = CSV.parse(@csv_body, col_sep: ',')
   end
 
   def extract_keys
