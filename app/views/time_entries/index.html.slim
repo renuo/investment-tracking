@@ -24,4 +24,4 @@ h1 Investment tracking
         .col-md-2
           p = value['percent_used_to_worked'].to_s + '%'
         .col-md-2
-          p = (100 - value['percent_used_to_open']).round(2).to_s + '%'
+          p = ((100 - value['percent_used_to_open']).round(2)).to_s + '%'

@@ -82,10 +82,10 @@ class RedmineTimeEntriesAggregator
   end
 
   def sort_by_proportion
-    @sort_proportion_open_worked = @added_proportion_used_open.sort_by { |k| k['percent_used_to_worked'] }
+    @sort_proportion_open_worked = @added_proportion_used_open.sort_by { |key| key['percent_used_to_worked'] }
   end
 
   def delete_hash_total_time
-    @sort_proportion_open_worked.delete_if {|hash| hash['name'] == 'Total time'}
+    @sort_proportion_open_worked.delete_if { |hash| hash['name'] == 'Total time' }
   end
 end

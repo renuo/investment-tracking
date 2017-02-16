@@ -1,29 +1,21 @@
 class RedmineRequest
-
   def initialize
-    @url = nil
+    @url = create_url
   end
 
   def request_redmine_for_entries
-    create_url
+
     http_request
   end
 
   private
 
   def query
-    URI.encode_www_form([['utf8', '✓'],
-                         ['criteria[]', 'user'],
-                         ['f[]', 'spent_on'],
-                         ['op[spent_on]', '>='],
-                         ['v[spent_on][]', '2017-01-30'],
+    URI.encode_www_form([['utf8', '✓'], ['criteria[]', 'user'],
+                         ['f[]', 'spent_on'], ['op[spent_on]', '>='], ['v[spent_on][]', '2017-01-30'],
                          ['f[]', ''],
-                         ['c[]', 'project'],
-                         ['c[]', 'spent_on'],
-                         ['c[]', 'user'],
-                         ['c[]', 'activity'],
-                         ['c[]', 'issue'],
-                         ['c[]', 'comments'],
+                         ['c[]', 'project'], ['c[]', 'spent_on'], ['c[]', 'user'],
+                         ['c[]', 'activity'], ['c[]', 'issue'], ['c[]', 'comments'],
                          ['c[]', 'hours'],
                          %w(columns month),
                          ['criteria[]', '']].push(*addition_params))
@@ -34,7 +26,7 @@ class RedmineRequest
   end
 
   def create_url
-    @url = URI(protocol + host + report_path+ query + key)
+    @url = URI(protocol + host + report_path + query + key)
   end
 
   def protocol
