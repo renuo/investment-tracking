@@ -1,44 +1,27 @@
 h1 Investment tracking
 
 .entries
-  .container
+  .container-fluid
+    .row
+      .col-md-2
+      .col-md-6
+        p Your open investment time in hours:
+      .col-md-2
+        p Your rate to total worked hours:
+      .col-md-2
+        p Used investment time to total investment time:
+    .row
+      hr
     - @aggregated_time_entries.each do |value|
-      h3 = value['name']
       .row
-        h6 Open Investment time:
-        .col-md-1
-          p 0h
-        .col-md-10
+        .col-md-2
+          p = value['name']
+        .col-md-6
           .progress
             .progress-bar.progress-bar-success[role='progressbar' aria-valuenow='10' aria-valuemin='0'
             aria-valuemax='80' style='width: calc(0% + 80/100*#{value['open_investment_time']}%)']
-              = value['open_investment_time']
-        .col-md-1
-          p 80h
-      .row
-        h6 Rate used-investment-time-hours to worked-hours:
-        .col-md-1
-        .col-md-10
-          .progress
-            .progress-bar.progress-bar-success[role='progressbar' aria-valuenow='10' aria-valuemin='0'
-            aria-valuemax='100' style='width: calc(0% + #{value['percent_used_to_worked']}%)']
-              = value['percent_used_to_worked']
-            .progress-bar.progress-bar-danger[role='progressbar' aria-valuenow='10' aria-valuemin='0'
-            aria-valuemax='100' style='width: calc(100% - #{value['percent_used_to_worked']}%)']
-              = (100 - value['percent_used_to_worked']).round(2)
-        .col-md-1
+              = value['open_investment_time'].to_s + 'h'
+        .col-md-2
           p = value['percent_used_to_worked'].to_s + '%'
-
-      .row
-        h6 Rate open-investment-time-hours to used-investment-time-hours:
-        .col-md-1
-        .col-md-10
-          .progress
-            .progress-bar.progress-bar-sucess[role='progressbar' aria-valuenow='10' aria-valuemin='0'
-            aria-valuemax='100' style='width: calc(100% - #{value['percent_open_to_used']}%)']
-              = (100 - value['percent_open_to_used']).round(2)
-            .progress-bar.progress-bar-warning[role='progressbar' aria-valuenow='10' aria-valuemin='0'
-            aria-valuemax='100' style='width: calc(0% + #{value['percent_open_to_used']}%)']
-              = value['percent_open_to_used']
-        .col-md-1
-          p = value['percent_open_to_worked'].to_s + '%'
+        .col-md-2
+          p = (100 - value['percent_used_to_open']).round(2).to_s + '%'
