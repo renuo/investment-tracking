@@ -21,27 +21,28 @@ class RedmineTimeEntriesAggregator
     add_proportion_open_to_worked
     add_used_open_proportion
     sort_by_proportion
+    delete_hash_total_time
   end
 
   private
 
   def add_total_of_investment_time
     @add_investment_time_to_hashes = @hashes_total_times.each do |hash|
-      hash['investment_time_total'] = (hash['Gesamtzeit'].to_f / 5).round(2)
+      hash['investment_time_total'] = (hash['Total time'].to_f / 5).round(2)
     end
   end
 
   def rename_hashes_time_entries
     @renamed_hashes_total_times = @add_investment_time_to_hashes.each do |hash|
-      hash['name'] = hash.delete('Benutzer')
-      hash['worked_hours'] = hash.delete('Gesamtzeit')
+      hash['name'] = hash.delete('User')
+      hash['worked_hours'] = hash.delete('Total time')
     end
   end
 
   def rename_hashes_investment_time
     @renamed_hashes_investment_time = @hashes_investment_times.each do |hash|
-      hash['name'] = hash.delete('Benutzer')
-      hash['worked_investment_hours'] = hash.delete('Gesamtzeit')
+      hash['name'] = hash.delete('User')
+      hash['worked_investment_hours'] = hash.delete('Total time')
     end
   end
 
@@ -75,12 +76,16 @@ class RedmineTimeEntriesAggregator
 
   def add_used_open_proportion
     @added_proportion_used_open = @added_proportion_open_worked.each do |hash|
-      hash['percent_open_to_used'] = (hash['open_investment_time'].to_f / hash['investment_time_total'].to_f * 100)
+      hash['percent_used_to_open'] = (hash['open_investment_time'].to_f / hash['investment_time_total'].to_f * 100)
                                      .round(2)
     end
   end
 
   def sort_by_proportion
     @sort_proportion_open_worked = @added_proportion_used_open.sort_by { |k| k['percent_used_to_worked'] }
+  end
+
+  def delete_hash_total_time
+    @sort_proportion_open_worked.delete_if {|hash| hash['name'] == 'Total time'}
   end
 end
