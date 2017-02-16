@@ -1,17 +1,40 @@
 class RedmineRequest
-  def initialize(report_path)
-    @url_report_path = report_path
-    @url = create_url
+
+  def initialize
+    @url = nil
   end
 
   def request_redmine_for_entries
+    create_url
     http_request
   end
 
   private
 
+  def query
+    URI.encode_www_form([['utf8', '✓'],
+                         ['criteria[]', 'user'],
+                         ['f[]', 'spent_on'],
+                         ['op[spent_on]', '>='],
+                         ['v[spent_on][]', '2017-01-30'],
+                         ['f[]', ''],
+                         ['c[]', 'project'],
+                         ['c[]', 'spent_on'],
+                         ['c[]', 'user'],
+                         ['c[]', 'activity'],
+                         ['c[]', 'issue'],
+                         ['c[]', 'comments'],
+                         ['c[]', 'hours'],
+                         %w(columns month),
+                         ['criteria[]', '']].push(*addition_params))
+  end
+
+  def addition_params
+    []
+  end
+
   def create_url
-    URI(protocol + host + @url_report_path + query + key)
+    @url = URI(protocol + host + report_path+ query + key)
   end
 
   def protocol
@@ -22,22 +45,8 @@ class RedmineRequest
     'redmine.renuo.ch'
   end
 
-  def hours_report_path
+  def report_path
     '/time_entries/report.csv?'
-  end
-
-  def investment_report_path
-    '/projects/renuo-investments/time_entries/report.csv?'
-  end
-
-  def query
-    URI.encode_www_form([['utf8', '✓'],
-                         ['f[]', 'spent_on'],
-                         ['op[spent_on]', '>='],
-                         ['v[spent_on][]', '2017-01-30'],
-                         ['f[]', ''],
-                         %w(columns month),
-                         ['criteria[]', 'user']])
   end
 
   def key
