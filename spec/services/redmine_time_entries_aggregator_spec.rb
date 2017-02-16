@@ -10,10 +10,10 @@ RSpec.describe RedmineTimeEntriesAggregator, type: :service do
       expected_result = [{ 'investment_time_total' => 0.6,
                            'name' => 'Max Muster',
                            'worked_hours' => '3.0',
-                           "worked_investment_hours"=>"0.6",
-                           "open_investment_time"=>0.0,
-                           "percent_used_to_worked"=>20.0,
-                           "percent_used_to_open"=>0.0}]
+                           'worked_investment_hours' => '0.6',
+                           'open_investment_time' => 0.0,
+                           'percent_used_to_worked' => 20.0,
+                           'percent_used_to_open' => 0.0 }]
       expect(subject.aggregate_time_entries).to eq(expected_result)
     end
   end

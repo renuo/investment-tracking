@@ -12,4 +12,3 @@ RSpec.describe 'time_entries/index.html.slim', type: :view do
     end
   end
 end
-

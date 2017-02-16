@@ -4,7 +4,6 @@ class RedmineRequest
   end
 
   def request_redmine_for_entries
-
     http_request
   end
 
