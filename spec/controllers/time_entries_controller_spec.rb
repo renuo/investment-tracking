@@ -1,12 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe TimeEntriesController, type: :controller do
-  subject { described_class.new }
-  #
-  # describe 'GET #index' do
-  #   it 'returns http success' do
-  #     get :index
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
+  describe 'GET #index' do
+    before(:each) do
+      stub_request(:get, /redmine.renuo.ch/)
+        .to_return(status: 200, body: 'Test', headers: {})
+    end
+
+    it 'returns http success' do
+      get :index
+      expect(response.status).to eq(200)
+    end
+  end
 end
