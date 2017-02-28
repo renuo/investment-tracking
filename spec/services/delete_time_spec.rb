@@ -6,8 +6,8 @@ RSpec.describe DeleteTime, type: :service do
      { 'name' => 'Hans Meier', 'percent_used_to_worked' => 0.2 }]
   end
 
-  describe 'request redmine for entries' do
-    it 'makes a http request' do
+  describe 'delete total time' do
+    it 'deletes the hash with total time' do
       expected_solution = [{ 'name' => 'Hans Meier', 'percent_used_to_worked' => 0.2 }]
       expect(described_class.new(sorted_times).delete_total_time).to eq(expected_solution)
     end
