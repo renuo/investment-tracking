@@ -7,8 +7,6 @@ class RedmineTimeEntriesAggregator
     @renamed_hashes_investment_time = nil
     @merged_hashes = nil
     @added_open_investment_time = nil
-    @added_proportion_open_worked = nil
-    @added_proportion_used_open = nil
     @sort_proportion_open_worked = nil
   end
 
@@ -18,8 +16,6 @@ class RedmineTimeEntriesAggregator
     rename_hashes_investment_time
     merge_both_hashed
     calculate_open_investment_time
-    add_proportion_open_to_worked
-    add_used_open_proportion
     sort_by_proportion
     delete_hash_total_time
   end
@@ -67,20 +63,6 @@ class RedmineTimeEntriesAggregator
       end
     end
   end
-
-  def add_proportion_open_to_worked
-    @added_proportion_open_worked = @added_open_investment_time.each do |hash|
-      hash['percent_used_to_worked'] = (hash['worked_investment_hours'].to_f / hash['worked_hours'].to_f * 100).round(2)
-    end
-  end
-
-  def add_used_open_proportion
-    @added_proportion_used_open = @added_proportion_open_worked.each do |hash|
-      hash['percent_used_to_open'] = (hash['open_investment_time'].to_f / hash['investment_time_total'].to_f * 100)
-                                     .round(2)
-    end
-  end
-
   def sort_by_proportion
     @sort_proportion_open_worked = @added_proportion_used_open.sort_by { |key| key['percent_used_to_worked'] }
   end
