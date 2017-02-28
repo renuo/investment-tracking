@@ -15,7 +15,6 @@ class RedmineTimeEntriesAggregator
     rename_hashes_investment_time
     merge_both_hashed
     calculate_open_investment_time
-    delete_hash_total_time
   end
 
   private
@@ -60,8 +59,5 @@ class RedmineTimeEntriesAggregator
         hash['open_investment_time'] = hash['investment_time_total'].to_f.round(2)
       end
     end
-  end
-  def delete_hash_total_time
-    @sort_proportion_open_worked.delete_if { |hash| hash['name'] == 'Total time' }
   end
 end
