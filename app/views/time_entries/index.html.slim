@@ -16,8 +16,7 @@
     - @aggregated_time_entries.each do |value|
       .row
         .col-md-2
-          p = value['name']
-          p = value['id']
+          p = value['name'].force_encoding('ISO-8859-1').encode('UTF-8')
         .col-md-6
           .progress
             - if value['open_investment_time'] >= 60
