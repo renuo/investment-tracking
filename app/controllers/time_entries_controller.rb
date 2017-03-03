@@ -32,5 +32,6 @@ class TimeEntriesController < ApplicationController
     added_proportion = CalculateProportion.new(aggregated_times).add_proportions
     sorted_times = SortTime.new(added_proportion).sort_by_proportion
     @aggregated_time_entries = DeleteTime.new(sorted_times).delete_total_time
+    FetchJsonFromRedmine.new.fetch_json_from_redmine
   end
 end
