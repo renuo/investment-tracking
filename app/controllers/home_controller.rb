@@ -52,9 +52,6 @@ class HomeController < ApplicationController
     @entries_with_calculations = Calculator.new(@concatenated_entries).calculate
   end
 
-  def parse_request_to_csv
-    @parsed_it_hours = CsvParser.new(@csv_it_hours).parse_to_hash
-    @parsed_total_hours = CsvParser.new(@csv_total_hours).parse_to_hash
   def delete_total_time
     @aggregated_entries = DeleteTime.new(@entries_with_calculations).delete_total_time
   end
