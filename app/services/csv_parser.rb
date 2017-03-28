@@ -3,27 +3,27 @@ class CsvParser
 
   def initialize(request)
     @csv_body = request.body
-    @csv_entries = nil
+    @seperated_csv_entries = nil
     @keys = nil
   end
 
   def parse_to_hash
-    parse_csv
+    separate_csv
     extract_keys
-    convert_values_to_hashes
+    convert_to_hash
   end
 
   private
 
-  def parse_csv
-    @csv_entries = CSV.parse(@csv_body, col_sep: ',')
+  def separate_csv
+    @seperated_csv_entries = CSV.parse(@csv_body, col_sep: ',')
   end
 
   def extract_keys
-    @keys = @csv_entries.shift
+    @keys = @seperated_csv_entries.shift
   end
 
-  def convert_values_to_hashes
-    @csv_entries.map { |value| @keys.zip value }.map(&:to_h)
+  def convert_to_hash
+    @seperated_csv_entries.map { |value| @keys.zip value }.map(&:to_h)
   end
 end
