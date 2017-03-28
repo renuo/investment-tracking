@@ -1,12 +1,12 @@
 class HomeController < ApplicationController
   def initialize
-    @csv_it_hours = nil
-    @csv_total_hours = nil
-    @parsed_it_hours = nil
-    @parsed_total_hours = nil
     @aggregated_time_entries = nil
     @csv_investment_entries = nil
     @csv_total_entries = nil
+
+    @hashes_investment_entries = nil
+    @hashes_total_entries = nil
+
     super
   end
 
@@ -16,9 +16,9 @@ class HomeController < ApplicationController
   end
 
   def index
-    parse_request_to_csv
     aggregated_time_entries
     redmine_request_for_csv
+    parse_csv_to_hash
   end
 
   private
@@ -27,6 +27,12 @@ class HomeController < ApplicationController
     @csv_investment_entries = RedmineRequestIt.new.request_redmine_for_entries
     @csv_total_entries = RedmineRequest.new.request_redmine_for_entries
   end
+
+  def parse_csv_to_hash
+    @hashes_investment_entries = CsvParser.new(@csv_investment_entries).parse_to_hash
+    @hashes_total_entries = CsvParser.new(@csv_total_entries).parse_to_hash
+  end
+
   end
 
   def parse_request_to_csv
