@@ -9,6 +9,10 @@ class RedmineRequest
 
   private
 
+  def create_url
+    @url = URI('https://redmine.renuo.ch/time_entries/report.csv?' + query + key)
+  end
+
   def query
     URI.encode_www_form([['utf8', '✓'], ['criteria[]', 'user'],
                          ['f[]', 'spent_on'], ['op[spent_on]', '>='], ['v[spent_on][]', '2017-01-30'],
@@ -22,22 +26,6 @@ class RedmineRequest
 
   def addition_params
     []
-  end
-
-  def create_url
-    @url = URI(protocol + host + report_path + query + key)
-  end
-
-  def protocol
-    'https://'
-  end
-
-  def host
-    'redmine.renuo.ch'
-  end
-
-  def report_path
-    '/time_entries/report.csv?'
   end
 
   def key
