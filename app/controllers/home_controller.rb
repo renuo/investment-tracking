@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
   def initialize
-    @aggregated_time_entries = nil
     @csv_investment_entries = nil
     @csv_total_entries = nil
 
@@ -23,7 +22,6 @@ class HomeController < ApplicationController
   end
 
   def index
-    aggregated_time_entries
     redmine_request_for_csv
     parse_csv_to_hash
     concatenate_hashes
@@ -56,12 +54,6 @@ class HomeController < ApplicationController
     @aggregated_entries = DeleteTime.new(@entries_with_calculations).delete_total_time
   end
 
-  def aggregated_time_entries
-    aggregated_times = RedmineTimeEntriesAggregator.new(@parsed_total_hours, @parsed_it_hours)
-                                                   .aggregate_time_entries
-    added_proportion = CalculateProportion.new(aggregated_times).add_proportions
-    sorted_times = SortTime.new(added_proportion).sort_by_proportion
-    @times_per_users = DeleteTime.new(sorted_times).delete_total_time
   def sort_time_entries
     @sorted_entries = SortTime.new(@aggregated_entries).sort_by_proportion
   end
