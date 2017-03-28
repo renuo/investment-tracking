@@ -7,6 +7,7 @@ class HomeController < ApplicationController
     @hashes_investment_entries = nil
     @hashes_total_entries = nil
 
+    @concatenated_entries = nil
     super
   end
 
@@ -19,6 +20,7 @@ class HomeController < ApplicationController
     aggregated_time_entries
     redmine_request_for_csv
     parse_csv_to_hash
+    concatenate_hashes
   end
 
   private
@@ -33,6 +35,9 @@ class HomeController < ApplicationController
     @hashes_total_entries = CsvParser.new(@csv_total_entries).parse_to_hash
   end
 
+  def concatenate_hashes
+    @concatenated_entries = HashConcatenator.new(@hashes_investment_entries, @hashes_total_entries).concatenate
+  end
   end
 
   def parse_request_to_csv
