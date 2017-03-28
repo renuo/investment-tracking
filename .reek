@@ -8,7 +8,9 @@ DuplicateMethodCall:
 Attribute:
   enabled: false
 TooManyInstanceVariables:
-  max_instance_variables: 20
+  max_instance_variables: 10
+TooManyStatements:
+  max_statements: 10
 "app/helpers":
   UtilityFunction:
     enabled: false
