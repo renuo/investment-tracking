@@ -13,7 +13,7 @@
         p Your used investment time:
     .row
       hr
-    - @times_per_users.each do |entries|
+    - @sorted_entries.each do |entries|
       .row
         .col-md-2
           p = entries['name'].force_encoding('ISO-8859-1').encode('UTF-8')
@@ -21,15 +21,15 @@
           .progress
             - if entries['open_investment_time'] >= 60
               .progress-bar.progress-bar-danger[role='progressbar'
-              style='width: calc(0% + 100/80*#{entries['open_investment_time']}%)']
+              style='width: #{entries['calculation_progress_bar']}%']
                 = entries['open_investment_time'].to_s + 'h'
             - if entries['open_investment_time'] >= 40 && entries['open_investment_time'] < 60
               .progress-bar.progress-bar-warning[role='progressbar'
-              style='width: calc(0% + 100/80*#{entries['open_investment_time']}%)']
+              style='width: #{entries['calculation_progress_bar']}%']
                 = entries['open_investment_time'].to_s + 'h'
             - if entries['open_investment_time'] < 40
               .progress-bar.progress-bar-success[role='progressbar'
-              style='width: calc(0% + 100/80*#{entries['open_investment_time']}%)']
+              style='width: #{entries['calculation_progress_bar']}%']
                 = entries['open_investment_time'].to_s + 'h'
         .col-md-2
           p = entries['percent_used_to_worked'].to_s + '%'
