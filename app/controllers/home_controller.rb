@@ -11,6 +11,9 @@ class HomeController < ApplicationController
 
     @entries_with_calculations = nil
 
+    @aggregated_entries = nil
+
+    @sorted_entries = nil
     super
   end
 
@@ -25,6 +28,8 @@ class HomeController < ApplicationController
     parse_csv_to_hash
     concatenate_hashes
     add_calculations_to_entries
+    delete_total_time
+    sort_time_entries
   end
 
   private
@@ -50,6 +55,8 @@ class HomeController < ApplicationController
   def parse_request_to_csv
     @parsed_it_hours = CsvParser.new(@csv_it_hours).parse_to_hash
     @parsed_total_hours = CsvParser.new(@csv_total_hours).parse_to_hash
+  def delete_total_time
+    @aggregated_entries = DeleteTime.new(@entries_with_calculations).delete_total_time
   end
 
   def aggregated_time_entries
@@ -58,5 +65,7 @@ class HomeController < ApplicationController
     added_proportion = CalculateProportion.new(aggregated_times).add_proportions
     sorted_times = SortTime.new(added_proportion).sort_by_proportion
     @times_per_users = DeleteTime.new(sorted_times).delete_total_time
+  def sort_time_entries
+    @sorted_entries = SortTime.new(@aggregated_entries).sort_by_proportion
   end
 end
