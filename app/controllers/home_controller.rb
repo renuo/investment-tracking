@@ -5,6 +5,8 @@ class HomeController < ApplicationController
     @parsed_it_hours = nil
     @parsed_total_hours = nil
     @aggregated_time_entries = nil
+    @csv_investment_entries = nil
+    @csv_total_entries = nil
     super
   end
 
@@ -14,16 +16,17 @@ class HomeController < ApplicationController
   end
 
   def index
-    redmine_request
     parse_request_to_csv
     aggregated_time_entries
+    redmine_request_for_csv
   end
 
   private
 
-  def redmine_request
-    @csv_it_hours = RedmineRequestIt.new.request_redmine_for_entries
-    @csv_total_hours = RedmineRequest.new.request_redmine_for_entries
+  def redmine_request_for_csv
+    @csv_investment_entries = RedmineRequestIt.new.request_redmine_for_entries
+    @csv_total_entries = RedmineRequest.new.request_redmine_for_entries
+  end
   end
 
   def parse_request_to_csv
