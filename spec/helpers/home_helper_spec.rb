@@ -20,14 +20,3 @@ RSpec.describe HomeHelper, type: :helper do
     end
   end
 end
-
-# def progress_bar_status(entries)
-#   open_investment_time_in_hours = entries['open_investment_time']
-#   if open_investment_time_in_hours >= 60
-#     'progress-bar-danger'
-#   elsif open_investment_time_in_hours >= 40 && open_investment_time_in_hours < 60
-#     'progress-bar-warning'
-#   else
-#     'progress-bar-success'
-#   end
-# end
