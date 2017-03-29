@@ -4,6 +4,6 @@ class SortByProportion
   end
 
   def sort_by_proportion
-    @time_entries.sort_by { |key| key['percent_used_to_worked'] }
+    @time_entries.sort_by { |key| key['proportion_used_to_worked'] }
   end
 end
