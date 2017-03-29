@@ -10,7 +10,7 @@ class HomeController < ApplicationController
 
     @entries_with_calculations = nil
 
-    @aggregated_entries = nil
+    @leftover_deletion_entries = nil
 
     @sorted_entries = nil
     super
@@ -51,10 +51,10 @@ class HomeController < ApplicationController
   end
 
   def delete_total_time
-    @aggregated_entries = DeleteTime.new(@entries_with_calculations).delete_total_time
+    @leftover_deletion_entries = DeleteTime.new(@entries_with_calculations).delete_total_time
   end
 
   def sort_time_entries
-    @sorted_entries = SortTime.new(@aggregated_entries).sort_by_proportion
+    @sorted_entries = SortTime.new(@leftover_deletion_entries).sort_by_proportion
   end
 end
