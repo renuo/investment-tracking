@@ -14,11 +14,11 @@ RSpec.describe AlterCsvData, type: :service do
                              'worked_total_hours' => 10.0,
                              'worked_investment_hours' => 1.0, 'investment_time_total' => 2.0,
                              'open_investment_time' => 1.0, 'proportion_used_to_worked' => 10.0,
-                             'calculation_progress_bar' => 1.25 },
+                             'reached_quota_percentage' => 1.25 },
                            { '2017-1' => '1.00', '2017-2' => '1.00', 'name' => 'Erik Muster',
                              'worked_total_hours' => 20.0, 'worked_investment_hours' => 2.0,
                              'investment_time_total' => 4.0, 'open_investment_time' => 2.0,
-                             'proportion_used_to_worked' => 10.0, 'calculation_progress_bar' => 2.5 }]
+                             'proportion_used_to_worked' => 10.0, 'reached_quota_percentage' => 2.5 }]
       expect(subject.alter_csv_to_final_data).to eq(expected_solution)
     end
   end
