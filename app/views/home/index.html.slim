@@ -13,7 +13,7 @@
         p Your used investment time:
     .row
       hr
-    - @sorted_entries.each do |entries|
+    - @final_entries.each do |entries|
       .row
         .col-md-2
           p = entries['name'].force_encoding('ISO-8859-1').encode('UTF-8')
