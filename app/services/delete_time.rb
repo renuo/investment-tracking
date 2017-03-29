@@ -1,9 +1,9 @@
 class DeleteTime
-  def initialize(sortes_times)
-    @sortes_times = sortes_times
+  def initialize(time_entries)
+    @time_entries = time_entries
   end
 
   def delete_total_time
-    @sortes_times.delete_if { |hash| hash['name'] == 'Total time' }
+    @time_entries.delete_if { |hash| hash['name'] == 'Total time' }
   end
 end
