@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe RedmineRequestIt, type: :service do
+RSpec.describe RedmineRequestCsv, type: :service do
   subject { described_class.new }
   describe '#request_redmine_for_entries' do
     it 'makes a http request' do

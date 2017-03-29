@@ -33,8 +33,8 @@ class HomeController < ApplicationController
   private
 
   def redmine_request_for_csv
-    @csv_investment_entries = RedmineRequestIt.new.request_redmine_for_entries
-    @csv_total_entries = RedmineRequest.new.request_redmine_for_entries
+    @csv_investment_entries = RedmineRequestCsvIt.new.request_redmine_for_entries
+    @csv_total_entries = RedmineRequestCsv.new.request_redmine_for_entries
   end
 
   def parse_csv_to_hash

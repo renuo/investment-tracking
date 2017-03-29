@@ -1,4 +1,4 @@
-class RedmineRequestIt < RedmineRequest
+class RedmineRequestCsvIt < RedmineRequestCsv
   def addition_params
     [['f[]', 'project_id'],
      ['op[project_id]', '='],

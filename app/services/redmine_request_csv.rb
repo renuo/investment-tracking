@@ -1,4 +1,4 @@
-class RedmineRequest
+class RedmineRequestCsv
   def initialize
     @url = create_url
   end
