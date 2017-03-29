@@ -7,7 +7,7 @@ class Calculator
     add_total_investment_time
     add_open_investment_time
     add_proportion_used_to_worked
-    add_used_open_proportion
+    add_proportion_used_to_open
     add_calc_for_progress_bar
   end
 
@@ -37,7 +37,7 @@ class Calculator
     end
   end
 
-  def add_used_open_proportion
+  def add_proportion_used_to_open
     @time_entries.each do |entry|
       entry['percent_used_to_open'] = (entry['open_investment_time'] / entry['investment_time_total'] * 100)
                                       .round(2)
