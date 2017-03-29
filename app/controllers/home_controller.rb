@@ -55,6 +55,6 @@ class HomeController < ApplicationController
   end
 
   def sort_time_entries
-    @sorted_entries = SortTime.new(@leftover_deletion_entries).sort_by_proportion
+    @sorted_entries = SortByProportion.new(@leftover_of_deletion_entries).sort_by_proportion
   end
 end
