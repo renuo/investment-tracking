@@ -1,6 +1,8 @@
 class Calculator
   def initialize(entries)
     @time_entries = entries
+    @proportion_of_investment_time = 5.0
+    @limit_of_investment_time = 80
   end
 
   def calculate
@@ -14,7 +16,7 @@ class Calculator
 
   def add_total_investment_time
     @time_entries.each do |entry|
-      entry['investment_time_total'] = (entry['worked_total_hours'] / 5).round(2)
+      entry['investment_time_total'] = (entry['worked_total_hours'] / @proportion_of_investment_time)
     end
   end
 
@@ -39,7 +41,7 @@ class Calculator
 
   def add_calc_for_progress_bar
     @time_entries.each do |entry|
-      entry['calculation_progress_bar'] = (100.0 / 80.0 * entry['open_investment_time']).round(2)
+      entry['reached_quota_percentage'] = (100.0 / @limit_of_investment_time * entry['open_investment_time']).round(2)
     end
   end
 end
