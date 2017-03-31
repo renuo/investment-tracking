@@ -6,5 +6,4 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Import.create(latest_import: '2017-03-10T08:59:00Z')
-Import.create(latest_import: '2017-03-29T08:30:00Z')
+Import.create(latest_import: '2017-01-31T00:00:00Z')

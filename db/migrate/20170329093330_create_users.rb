@@ -3,9 +3,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
     create_table :users do |t|
       t.integer :user_id
       t.string :user_name
-      t.integer :worked_hours
-      t.integer :overflow
-
+      t.float :open_investment_time
       t.timestamps
     end
   end
