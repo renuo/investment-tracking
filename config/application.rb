@@ -23,5 +23,7 @@ module InvestmentTracking
     config.generators do |g|
       g.test_framework :rspec
     end
+
+    config.autoload_paths += %W(#{config.root}/app/services)
   end
 end

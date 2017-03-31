@@ -1,2 +1,26 @@
-h1 Home#index
-p Find me in app/views/home/index.html.slim
+.container
+  h1 Investment tracking
+
+  .entries
+    .container-fluid
+      .row
+        .col-md-6.col-md-offset-2
+          p Your open investment time in hours:
+        .col-md-2
+          p Your rate to total worked hours:
+        .col-md-2
+          p Your used investment time:
+        hr
+    - @final_entries.each do |entries|
+      .row
+        .col-md-2
+          p = entries['name'].force_encoding('ISO-8859-1').encode('UTF-8')
+        .col-md-6
+          .progress
+            div[class="progress-bar #{progress_bar_status(entries)}" role='progressbar'
+            style="width: #{entries['reached_quota_percentage']}%"]
+              = entries['open_investment_time'].to_s + 'h'
+        .col-md-2
+          p = entries['proportion_used_to_worked'].to_s + '%'
+        .col-md-2
+          p = entries['worked_investment_hours'].to_s + 'h'

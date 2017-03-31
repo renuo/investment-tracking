@@ -9,6 +9,10 @@ gem 'awesome_print'
 gem 'sass-rails'
 gem 'slim-rails'
 gem 'uglifier'
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
+gem 'webmock'
+
 
 group :development do
   gem 'listen'
