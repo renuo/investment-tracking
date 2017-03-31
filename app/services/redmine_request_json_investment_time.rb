@@ -1,4 +1,4 @@
-class RedmineRequestJson
+class RedmineRequestJsonInvestmentTime
   def initialize
     @latest_import_reached = false
 
@@ -13,6 +13,7 @@ class RedmineRequestJson
     @date_of_latest_import = Import.last['latest_import']
 
     @data_for_database = nil
+
   end
 
   def fetch_json_from_redmine
@@ -26,6 +27,9 @@ class RedmineRequestJson
     @date_of_latest_import  = @response_body.first["created_on"]
 
     calculate_entries_for_db
+
+    rename_hashes
+
     @newest
   end
 
@@ -43,7 +47,9 @@ class RedmineRequestJson
   def add_new_entries
     @response_body.each do |entry|
       if entry['created_on'] > @date_of_latest_import
-        @new_time_entries << {"user_id" => entry["user"]["id"], "name" => entry["user"]["name"], "hours" => entry["hours"]}
+        if entry['project']['id'] == 129 ||  entry['project']['id'] == 130 || entry['project']['id'] == 139 || entry['project']['id'] == 140
+          @new_time_entries << {"user_id" => entry["user"]["id"], "name" => entry["user"]["name"], "hours" => entry["hours"]}
+        end
       else
         @latest_import_reached = true
         break
@@ -56,6 +62,12 @@ class RedmineRequestJson
       hashes.reduce do |hash, next_hash|
         hash.merge(next_hash) { |key, v1, v2| v1 == v2 ? v1 : (v1 + v2)}
       end
+    end
+  end
+
+  def rename_hashes
+    @newest.each do |entry|
+      entry['used_investment_time'] = entry.delete('hours')
     end
   end
 end
