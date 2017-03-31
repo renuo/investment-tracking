@@ -19,7 +19,7 @@ class ConcatenateHashes
       @new_hash.each do |entry|
         current_user = User.find_by(user_name: entry['name'])
         current_user_hours = current_user.open_investment_time
-        if entry.key?('used_investment_time')
+        if entry.key?('used_investment_time') && !(entry['used_investment_time'] === nil)
           newtime = entry['hours'] / 5 - entry['used_investment_time'] + current_user_hours
           if newtime > 80
             current_user.open_investment_time = 80
