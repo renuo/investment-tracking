@@ -24,10 +24,9 @@ ActiveRecord::Schema.define(version: 20170329093330) do
   create_table "users", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "user_name"
-    t.integer  "worked_hours"
-    t.integer  "overflow"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.float    "open_investment_time"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
 end
