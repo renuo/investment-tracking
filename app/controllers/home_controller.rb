@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-<<<<<<< HEAD
   def index
     new_time_entries = RedmineRequestJson.new.fetch_json_from_redmine
     investment_time_entries = RedmineRequestJsonInvestmentTime.new.fetch_json_from_redmine
