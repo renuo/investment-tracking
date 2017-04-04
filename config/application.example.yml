@@ -8,6 +8,9 @@ MAIL_USERNAME: ''
 MAIL_PASSWORD: ''
 MAIL_SENDER: 'yourname+investment-tracking@example.com' # change your name and domain to @renuo.ch
 
+# Redmine API-Key
+REDMINE_API_KEY: 'your-redmine-api-key'
+
 # Secrets
 SECRET_KEY_BASE: 'rake secret'
 

@@ -1,11 +1,26 @@
 ---
+NestedIterators:
+  max_allowed_nesting: 2
 IrresponsibleModule:
   enabled: false
+DuplicateMethodCall:
+  max_calls: 2
 Attribute:
   enabled: false
+TooManyInstanceVariables:
+  max_instance_variables: 10
+TooManyStatements:
+  max_statements: 10
+UtilityFunction:
+  public_methods_only: true
 "app/helpers":
   UtilityFunction:
     enabled: false
+"app/services":
+  UtilityFunction:
+   enabled: false
+  FeatureEnvy:
+   enabled: false
 
 exclude_paths:
   - tmp
