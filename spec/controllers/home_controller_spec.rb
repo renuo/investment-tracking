@@ -3,13 +3,25 @@ require 'rails_helper'
 RSpec.describe HomeController, type: :controller do
   describe 'GET #index' do
     before(:each) do
-      http_basic_auth
       stub_request(:get, /redmine.renuo.ch/).to_return(status: 200, body: 'Test', headers: {})
     end
 
-    it 'returns http success' do
-      get :index
-      expect(response.status).to eq(200)
+    context 'not being logged in' do
+      it 'fails (with 401 unauthorized)' do
+        get :index
+        expect(response).to have_http_status(:unauthorized)
+      end
+    end
+
+    context 'being logged in' do
+      before(:each) do
+        http_basic_auth
+      end
+
+      it 'succeeds (with 200 ok)' do
+        get :index
+        expect(response).to have_http_status(:success)
+      end
     end
   end
 
