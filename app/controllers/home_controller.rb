@@ -4,6 +4,7 @@ class HomeController < ApplicationController
     investment_time_entries = RedmineRequestJsonInvestmentTime.new.fetch_json_from_redmine
     @concatenated_hashes = ConcatenateHashes.new(new_time_entries, investment_time_entries).concatenate
     @final_entries = data_service.alter_csv_to_final_data
+    @final_entries_csv = data_csv_service.alter_csv_to_final_data
   end
 
   def check

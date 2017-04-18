@@ -11,7 +11,7 @@
         .col-md-2
           p Your used investment time:
         hr
-    - @final_entries.each do |entries|
+    - @final_entries_csv.each do |entries|
       .row
         .col-md-2
           p = entries['name'].force_encoding('ISO-8859-1').encode('UTF-8')
