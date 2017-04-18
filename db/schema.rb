@@ -15,18 +15,18 @@ ActiveRecord::Schema.define(version: 20170329093330) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "employees", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.string   "employee_name"
+    t.float    "open_investment_time"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
   create_table "imports", force: :cascade do |t|
     t.string   "latest_import"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "user_name"
-    t.float    "open_investment_time"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
   end
 
 end
