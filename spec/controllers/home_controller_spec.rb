@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe HomeController, type: :controller do
   describe 'GET #index' do
     before(:each) do
-      stub_request(:get, /redmine.renuo.ch/)
+      stub_request(:get, %r{/redmine.renuo.ch/})
         .to_return(status: 200, body: 'Test', headers: {})
     end
 
