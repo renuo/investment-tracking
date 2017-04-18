@@ -9,26 +9,7 @@ RSpec.describe AlterJsonData do
   end
 
   describe 'alter json to final data' do
-    #
-
-    # before :each doa
-    #   expect(TimeEntriesClassifier).to receive(:group_entries_by_project).and_return([1, 2, 3, 4])
-    #   # expect(time_entry_extractor).to receive(:extract_newest_time_entries).and_return([1, 2, 3, 4])
-    #
-    # end
-
-    # it 'fetches all new time entries' do
-    #   expect(described_class.alter_json_to_final_data).to be true
-    # end
-
-    it ' ' do
-      # instance = instance_double(TimeEntriesClassifier)
-      # allow(TimeEntriesClassifier).to receive(:new).and_return(instance)
-      # allow(instance).to receive(:group_entries_by_project).and_return(:foo)
-
-      # result = TimeEntriesClassifier.new(false).group_entries_by_project
-      # expect(result).to eq :foo
-
+    it 'aggregates the time entries' do
       expected_solution = [{ 'employee_id' => 1, 'employee_name' => 'Max',
                              'worked_hours' => 11, 'used_investment_time' => 1 },
                            { 'employee_id' => 2, 'employee_name' => 'Leo',
