@@ -1,10 +1,7 @@
 class HomeController < ApplicationController
   def index
-    new_time_entries = RedmineRequestJson.new.fetch_json_from_redmine
-    investment_time_entries = RedmineRequestJsonInvestmentTime.new.fetch_json_from_redmine
-    @concatenated_hashes = ConcatenateHashes.new(new_time_entries, investment_time_entries).concatenate
-    @final_entries = data_service.alter_csv_to_final_data
     @final_entries_csv = data_csv_service.alter_csv_to_final_data
+    @final_entries_json = altered_entries.save_to_db
   end
 
   def check
@@ -14,7 +11,7 @@ class HomeController < ApplicationController
 
   private
 
-  def data_service
+  def data_csv_service
     AlterCsvData.new(csv_investment_entries, csv_total_entries)
   end
 
@@ -24,5 +21,17 @@ class HomeController < ApplicationController
 
   def csv_total_entries
     RedmineRequestCsv.new.request_redmine_for_entries
+  end
+
+  def json_entries
+    RedmineIssue.new.entries_since_latest_import
+  end
+
+  def alter_json_entries
+    AlterJsonData.new(json_entries).alter_json_to_final_data
+  end
+
+  def altered_entries
+    SaveEntries.new(alter_json_entries)
   end
 end
