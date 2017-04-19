@@ -14,7 +14,6 @@
     - @final_entries_csv.each do |entries|
       .row
         .col-md-2
-          p = entries['name'].force_encoding('ISO-8859-1').encode('UTF-8')
         .col-md-6
           .progress
             div[class="progress-bar #{progress_bar_status(entries)}" role='progressbar'

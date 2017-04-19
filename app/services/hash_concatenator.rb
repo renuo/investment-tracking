@@ -16,7 +16,7 @@ class HashConcatenator
 
   def rename_keys(entries, replacing_string)
     entries.each do |entry|
-      entry['name'] = entry.delete('User')
+      entry['name'] = entry.delete('User').force_encoding('ISO-8859-1').encode('UTF-8')
       entry[replacing_string] = entry.delete('Total time')
     end
   end
