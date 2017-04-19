@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   def index
     @final_entries_csv = data_csv_service.alter_csv_to_final_data
     @final_entries_json = altered_entries.save_to_db
+    aggregated_entries = collect_data_from_csv_and_db.merge
   end
 
   def check
