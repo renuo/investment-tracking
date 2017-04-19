@@ -1,0 +1,13 @@
+class AddPercentOfProgressBar
+  def initialize(entries)
+    @time_entries = entries
+    @proportion_of_investment_time = 4.0
+    @limit_of_investment_time = 80
+  end
+
+  def add_percent
+    @time_entries.each do |entry|
+      entry['reached_quota_percentage'] = (100.0 / @limit_of_investment_time * entry['open_investment_time']).round(2)
+    end
+  end
+end
