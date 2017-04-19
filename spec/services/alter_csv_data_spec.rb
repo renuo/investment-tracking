@@ -11,14 +11,11 @@ RSpec.describe AlterCsvData, type: :service do
   describe 'alter csv to final data' do
     it 'alters the data from the redmine request' do
       expected_solution = [{ '2017-1' => '', '2017-2' => '1.00', 'name' => 'Max Muller',
-                             'worked_total_hours' => 10.0,
-                             'worked_investment_hours' => 1.0, 'investment_time_total' => 2.0,
-                             'open_investment_time' => 1.0, 'proportion_used_to_worked' => 10.0,
-                             'reached_quota_percentage' => 1.25 },
+                             'worked_total_hours' => 10.0, 'worked_investment_hours' => 1.0,
+                             'proportion_used_to_worked' => 10.0 },
                            { '2017-1' => '1.00', '2017-2' => '1.00', 'name' => 'Erik Muster',
                              'worked_total_hours' => 20.0, 'worked_investment_hours' => 2.0,
-                             'investment_time_total' => 4.0, 'open_investment_time' => 2.0,
-                             'proportion_used_to_worked' => 10.0, 'reached_quota_percentage' => 2.5 }]
+                             'proportion_used_to_worked' => 10.0 }]
       expect(subject.alter_csv_to_final_data).to eq(expected_solution)
     end
   end
