@@ -11,9 +11,10 @@
         .col-md-2
           p Your used investment time:
         hr
-    - @final_entries_csv.each do |entries|
+    - @data_to_display.each do |entries|
       .row
         .col-md-2
+          p = entries['name']
         .col-md-6
           .progress
             div[class="progress-bar #{progress_bar_status(entries)}" role='progressbar'

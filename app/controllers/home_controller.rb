@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @final_entries_csv = data_csv_service.alter_csv_to_final_data
-    @final_entries_json = altered_entries.save_to_db
+    add_json_time_entries.add_to_db
     aggregated_entries = collect_data_from_csv_and_db.merge
     @data_to_display = AddPercentOfProgressBar.new(aggregated_entries).add_percent
   end
@@ -13,8 +12,12 @@ class HomeController < ApplicationController
 
   private
 
+  def collect_data_from_csv_and_db
+    CollectDataFromCsvAndDb.new(data_csv_service)
+  end
+
   def data_csv_service
-    AlterCsvData.new(csv_investment_entries, csv_total_entries)
+    AlterCsvData.new(csv_investment_entries, csv_total_entries).alter_csv_to_final_data
   end
 
   def csv_investment_entries
@@ -29,11 +32,7 @@ class HomeController < ApplicationController
     RedmineIssue.new.entries_since_latest_import
   end
 
-  def alter_json_entries
-    AlterJsonData.new(json_entries).alter_json_to_final_data
-  end
-
-  def altered_entries
-    SaveEntries.new(alter_json_entries)
+  def add_json_time_entries
+    AddNewestTimeEntries.new(json_entries)
   end
 end
