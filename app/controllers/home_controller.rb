@@ -2,9 +2,9 @@ class HomeController < ApplicationController
   http_basic_authenticate_with name: ENV['BASIC_AUTH_USER'], password: ENV['BASIC_AUTH_PASSWORD'], except: :check
 
   def index
-    add_json_time_entries.add_to_db
-    aggregated_entries = collect_data_from_csv_and_db.merge
-    @data_to_display = AddPercentOfProgressBar.new(aggregated_entries).add_percent
+    aggregate_json_time_entries.add_to_db
+    combined_csv_and_db_data = collect_data_from_csv_and_db.merge
+    @data_to_display = AddPercentOfProgressBar.new(combined_csv_and_db_data).add_percent
   end
 
   def check
@@ -34,7 +34,7 @@ class HomeController < ApplicationController
     RedmineIssue.new.entries_since_latest_import
   end
 
-  def add_json_time_entries
+  def aggregate_json_time_entries
     AddNewestTimeEntries.new(json_entries)
   end
 end
