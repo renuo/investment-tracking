@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 20170329093330) do
   enable_extension "plpgsql"
 
   create_table "employees", force: :cascade do |t|
-    t.integer  "employee_id"
-    t.string   "employee_name"
+    t.integer  "redmine_user_id"
+    t.string   "name"
     t.float    "open_investment_time"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false

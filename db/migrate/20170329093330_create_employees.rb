@@ -1,8 +1,8 @@
 class CreateEmployees < ActiveRecord::Migration[5.0]
   def change
     create_table :employees do |t|
-      t.integer :employee_id
-      t.string :employee_name
+      t.integer :redmine_user_id
+      t.string :name
       t.float :open_investment_time
       t.timestamps
     end
