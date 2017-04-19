@@ -2,6 +2,10 @@
 APP_HOST: 'investment-tracking.dev'
 APP_PORT: '3000'
 
+# Basic auth configuration
+BASIC_AUTH_PASSWORD: 'secret password'
+BASIC_AUTH_USER: 'renuo'
+
 # Mail config
 MAIL_HOST: ''
 MAIL_USERNAME: ''

@@ -1,5 +1,5 @@
 .container
-  h1 Investment tracking
+  h1 Investment tracking*
 
   .entries
     .container-fluid
@@ -24,3 +24,14 @@
           p = entries['proportion_used_to_worked'].to_s + '%'
         .col-md-2
           p = entries['worked_investment_hours'].to_s + 'h'
+
+  h2 * Edge Cases
+  dl
+    dt Start date of accumulation:
+    dd 30.01.2017
+    dt Accumulation over 80h of open investment time:
+    dd Not done yet
+    dt Invisible projects:
+    dd There may be projects which are invisible to the investment tracker on Redmine (e.g. new ones)
+    dt Excluded tickets:
+    dd In the future some tickets have to be excluded from the calculation (e.g. 2949 - Krankheit)

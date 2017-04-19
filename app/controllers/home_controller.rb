@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  http_basic_authenticate_with name: ENV['BASIC_AUTH_USER'], password: ENV['BASIC_AUTH_PASSWORD'], except: :check
+
   def index
     add_json_time_entries.add_to_db
     aggregated_entries = collect_data_from_csv_and_db.merge
