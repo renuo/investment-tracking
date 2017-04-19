@@ -35,7 +35,7 @@ class AlterCsvData
   end
 
   def add_calculations_to_entries
-    @entries_with_calculations = Calculator.new(@concatenated_entries).calculate
+    @entries_with_calculations = CalculateProportion.new(@concatenated_entries).calculate
   end
 
   def delete_total_time
