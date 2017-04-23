@@ -37,7 +37,9 @@ class OpenInvestmentTimeCalculator
         subtract_investment_time(time_entry['hours'])
       else
         add_investment_time(time_entry['hours'])
-        @employee_investment_time = 80 if @employee_investment_time > 80
+        if @employee_investment_time > InvestmentTracking::Application::MAXIMUM_OF_INVESTMENT_TIME
+          @employee_investment_time = InvestmentTracking::Application::MAXIMUM_OF_INVESTMENT_TIME
+        end
       end
     end
   end

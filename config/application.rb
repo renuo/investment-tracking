@@ -25,5 +25,7 @@ module InvestmentTracking
     end
 
     config.autoload_paths += %W(#{config.root}/app/services)
+
+    MAXIMUM_OF_INVESTMENT_TIME = 80
   end
 end
