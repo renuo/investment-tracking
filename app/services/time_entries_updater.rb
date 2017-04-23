@@ -20,10 +20,10 @@ class TimeEntriesUpdater
 
   def create_missing_employees_in_db
     @grouped_time_entries.map do |time_entries_per_employee|
-      employee_credentials = time_entries_per_employee[0]
+      user = time_entries_per_employee.first
 
-      Employee.find_or_create_by!(redmine_user_id: employee_credentials[:redmine_user_id]) do |employee|
-        employee.name = employee_credentials[:name]
+      Employee.find_or_create_by!(redmine_user_id: user[:redmine_user_id]) do |employee|
+        employee.name = user[:name]
         employee.open_investment_time = 0
       end
     end
