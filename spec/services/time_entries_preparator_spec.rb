@@ -8,7 +8,7 @@ RSpec.describe TimeEntriesPreparator, type: :service do
      { 'user' => { 'name' => 'Duda', 'id' => 3 }, 'project' => { 'id' => 140 }, 'hours' => 3 }]
   end
 
-  describe 'sort and group' do
+  describe '#sort_and_group' do
     it 'sorts by created on and groups by employee' do
       expected_solution =
         { { redmine_user_id: 1, name: 'Max' } => [{ 'user' => { 'name' => 'Max', 'id' => 1 },

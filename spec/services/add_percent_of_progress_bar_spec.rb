@@ -5,7 +5,7 @@ RSpec.describe AddPercentOfProgressBar, type: :service do
     [{ 'open_investment_time' => 40 }]
   end
 
-  describe 'add percent' do
+  describe '#add_percent' do
     it 'calculates the percent filled out in the progress bar ' do
       expected_solution = [{ 'open_investment_time' => 40, 'reached_quota_percentage' => 50.0 }]
       expect(described_class.new(entries).add_percent).to eq(expected_solution)

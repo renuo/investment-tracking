@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe SaveRedmineImportTime do
-  describe 'save current time to db' do
+  describe '#save_current_time_to_db' do
     context 'when db is empty' do
       it 'adds the current time to the RedmineImport db' do
         described_class.new.save_current_time_to_db

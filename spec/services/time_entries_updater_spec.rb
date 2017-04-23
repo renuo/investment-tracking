@@ -8,8 +8,23 @@ RSpec.describe TimeEntriesUpdater, type: :service do
      { 'user' => { 'name' => 'Duda', 'id' => 3 }, 'project' => { 'id' => 140 }, 'hours' => 3 }]
   end
 
-  context 'if database is empty' do
-    describe 'add to db' do
+  describe '#add_to_db' do
+    context 'if database is not empty' do
+      before(:each) do
+        Employee.create(redmine_user_id: 1, name: 'Max', open_investment_time: 2)
+        Employee.create(redmine_user_id: 2, name: 'Leo', open_investment_time: 79)
+        Employee.create(redmine_user_id: 3, name: 'Duda', open_investment_time: 79)
+      end
+
+      it 'adds the new entries to the db' do
+        described_class.new(all_time_entries).add_to_db
+        expect(Employee.exists?(redmine_user_id: 1)).to be true
+        expect(Employee.exists?(redmine_user_id: 2)).to be true
+        expect(Employee.exists?(redmine_user_id: 3)).to be true
+      end
+    end
+
+    context 'if database is empty' do
       it 'adds the new entries to the db' do
         described_class.new(all_time_entries).add_to_db
         expect(Employee.exists?(redmine_user_id: 1)).to be true
@@ -27,23 +42,6 @@ RSpec.describe TimeEntriesUpdater, type: :service do
       it 'adds the current time to the db' do
         described_class.new(all_time_entries).add_to_db
         expect(RedmineImport.all.size).to be(1)
-      end
-    end
-  end
-
-  context 'if database is not empty' do
-    describe 'add to db' do
-      before(:each) do
-        Employee.create(redmine_user_id: 1, name: 'Max', open_investment_time: 2)
-        Employee.create(redmine_user_id: 2, name: 'Leo', open_investment_time: 79)
-        Employee.create(redmine_user_id: 3, name: 'Duda', open_investment_time: 79)
-      end
-
-      it 'adds the new entries to the db' do
-        described_class.new(all_time_entries).add_to_db
-        expect(Employee.exists?(redmine_user_id: 1)).to be true
-        expect(Employee.exists?(redmine_user_id: 2)).to be true
-        expect(Employee.exists?(redmine_user_id: 3)).to be true
       end
     end
   end

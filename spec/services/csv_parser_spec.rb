@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CsvParser do
-  describe 'request redmine for entries' do
+  describe '#request_redmine_for_entries' do
     subject do
       described_class.new(double(:response, body:
         "User,2017-1,2017-2,Total time\nEmily Wangler,\"\",7.26,7.26\nPascal Andermatt,0.85,24.24,25.09\n"))

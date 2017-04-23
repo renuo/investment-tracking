@@ -6,7 +6,7 @@ RSpec.describe SortByProportion, type: :service do
      { 'name' => 'Max Muster', 'proportion_used_to_worked' => 0.1 }]
   end
 
-  describe 'request redmine for entries' do
+  describe '#request_redmine_for_entries' do
     it 'makes a http request' do
       expected_solution = [{ 'name' => 'Max Muster', 'proportion_used_to_worked' => 0.1 },
                            { 'name' => 'Hans Meier', 'proportion_used_to_worked' => 0.2 }]

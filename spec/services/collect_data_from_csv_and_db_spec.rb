@@ -6,12 +6,12 @@ RSpec.describe CollectDataFromCsvAndDb, type: :service do
        'worked_investment_hours' => 10, 'proportion_used_to_worked' => 12.5 }]
   end
 
-  describe 'add percent' do
+  describe '#add_percent' do
     before(:each) do
       Employee.create!(name: 'Max Muster', redmine_user_id: 1, open_investment_time: 70)
     end
 
-    it 'calculates the percent filled out in the progress bar ' do
+    it 'calculates_the_percent_filled_out_in_the_progress_bar' do
       expected_solution = [{ 'name' => 'Max Muster',
                              'worked_total_hours' => 80,
                              'worked_investment_hours' => 10,

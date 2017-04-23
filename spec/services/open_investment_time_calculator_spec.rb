@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe OpenInvestmentTimeCalculator, type: :service do
-  describe 'add time entries to employees' do
+  describe '#add_time_entries_to_employees' do
     before(:each) do
       Employee.create(redmine_user_id: 1, name: 'Max Muster', open_investment_time: 2)
       Employee.create(redmine_user_id: 2, name: 'Hans Meier', open_investment_time: 79)
