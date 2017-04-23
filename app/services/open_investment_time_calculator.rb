@@ -54,6 +54,7 @@ class OpenInvestmentTimeCalculator
 
     [renuo_investments, investments_elf, redmine_communicator, redmine_estimator,
      investments_griffin, investments_inters].include? time_entry['project']['id']
+    InvestmentProjects.new.get_all_investment_projects_id.include? time_entry['project']['id']
   end
 
   def subtract_investment_time(investment_hours)
