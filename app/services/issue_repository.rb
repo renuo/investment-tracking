@@ -12,7 +12,6 @@ class IssueRepository
       fetch_json_with_new_entries
       sort_by_created_on
       extract_new_entries_from_json
-      @offset += 1
       entries_since_latest_import
     end
 
@@ -23,6 +22,7 @@ class IssueRepository
 
   def fetch_json_with_new_entries
     @json_from_redmine = RedmineRequestJson.new(@offset).fetch_json_from_redmine
+    @offset += 1
   end
 
   def sort_by_created_on
