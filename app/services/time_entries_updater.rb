@@ -7,7 +7,7 @@ class TimeEntriesUpdater
 
   def add_to_db
     sort_and_group_entries
-    ensure_all_employee_are_in_db
+    create_missing_employees_in_db
     add_time_entries_to_employees
     save_information_to_db
   end
@@ -18,7 +18,7 @@ class TimeEntriesUpdater
     @grouped_time_entries = TimeEntriesPreparator.new(@new_time_entries).sort_and_group
   end
 
-  def ensure_all_employee_are_in_db
+  def create_missing_employees_in_db
     @grouped_time_entries.map do |time_entries_per_employee|
       employee_credentials = time_entries_per_employee[0]
 
