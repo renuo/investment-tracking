@@ -34,11 +34,11 @@ class TimeEntriesUpdater
   end
 
   def save_information_to_db
-    save_new_employees
+    update_times_of_each_employee
     save_current_time_to_db
   end
 
-  def save_new_employees
+  def update_times_of_each_employee
     Employee.transaction do
       @employees.each(&:save!)
     end
