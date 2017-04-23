@@ -9,7 +9,8 @@ class OpenInvestmentTimeCalculator
     @employee = nil
     @employee_investment_time = nil
 
-    @ratio_of_investment_time = 4
+    @ratio_of_investment_time = InvestmentTracking::Application::PROPORTION_OF_INVESTMENT_TIME
+    @limit_of_investment_time = InvestmentTracking::Application::MAXIMUM_OF_INVESTMENT_TIME
   end
 
   def add_time_entries_to_employees
@@ -37,24 +38,13 @@ class OpenInvestmentTimeCalculator
         subtract_investment_time(time_entry['hours'])
       else
         add_investment_time(time_entry['hours'])
-        if @employee_investment_time > InvestmentTracking::Application::MAXIMUM_OF_INVESTMENT_TIME
-          @employee_investment_time = InvestmentTracking::Application::MAXIMUM_OF_INVESTMENT_TIME
-        end
+        @employee_investment_time = @limit_of_investment_time if @employee_investment_time > @limit_of_investment_time
       end
     end
   end
 
   def entry_is_investment_time(time_entry)
-    renuo_investments = 138
-    investments_elf = 129
-    redmine_communicator = 141
-    redmine_estimator = 130
-    investments_griffin = 139
-    investments_inters = 140
-
-    [renuo_investments, investments_elf, redmine_communicator, redmine_estimator,
-     investments_griffin, investments_inters].include? time_entry['project']['id']
-    InvestmentProjects.new.get_all_investment_projects_id.include? time_entry['project']['id']
+    InvestmentProjects.new.all_investment_projects_id.include? time_entry['project']['id']
   end
 
   def subtract_investment_time(investment_hours)
