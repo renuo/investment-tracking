@@ -19,7 +19,7 @@ RSpec.describe OpenInvestmentTimeCalculator, type: :service do
 
       it 'adds the time entries to the existing investment time of the db' do
         updated_employees = described_class.new(time_entries).add_time_entries_to_employees
-        expect(updated_employees[0].open_investment_time).to be(4.0)
+        expect(updated_employees[0].open_investment_time).to be(4.5)
         expect(updated_employees[1].open_investment_time).to be(75.0)
       end
     end
@@ -34,7 +34,7 @@ RSpec.describe OpenInvestmentTimeCalculator, type: :service do
 
       it 'adds the time entries to the existing investment time of the db' do
         updated_employees = described_class.new(time_entries).add_time_entries_to_employees
-        expect(updated_employees[0].open_investment_time).to be(4.0)
+        expect(updated_employees[0].open_investment_time).to be(4.5)
         expect(updated_employees[1].open_investment_time).to be(80.0)
       end
     end
