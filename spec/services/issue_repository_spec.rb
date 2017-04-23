@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe RedmineIssue do
+RSpec.describe IssueRepository do
   let(:time_entries) do
     '{ "time_entries": [{"created_on": "2017-01-29T00:00:00Z"},
 {"created_on": "2017-02-01T00:00:00Z"}, {"created_on": "2017-01-30T00:00:01Z"}] }'

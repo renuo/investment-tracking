@@ -1,4 +1,4 @@
-class RedmineIssue
+class IssueRepository
   def initialize
     @offset = 0
     @date_of_latest_import = RedmineImport.last['latest_import']

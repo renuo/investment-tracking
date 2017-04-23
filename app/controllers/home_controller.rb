@@ -31,7 +31,7 @@ class HomeController < ApplicationController
   end
 
   def json_entries
-    RedmineIssue.new.entries_since_latest_import
+    IssueRepository.new.entries_since_latest_import
   end
 
   def aggregate_json_time_entries
