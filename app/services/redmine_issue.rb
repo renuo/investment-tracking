@@ -1,7 +1,7 @@
 class RedmineIssue
   def initialize
     @offset = 0
-    @date_of_latest_import = Import.last['latest_import']
+    @date_of_latest_import = RedmineImport.last['latest_import']
     @new_entries_left = true
     @json_from_redmine = nil
     @new_time_entries = []

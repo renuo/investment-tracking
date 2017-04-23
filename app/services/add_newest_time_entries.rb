@@ -45,6 +45,6 @@ class AddNewestTimeEntries
   end
 
   def save_current_time_to_db
-    SaveImportTime.new.save_current_time_to_db
+    SaveRedmineImportTime.new.save_current_time_to_db
   end
 end

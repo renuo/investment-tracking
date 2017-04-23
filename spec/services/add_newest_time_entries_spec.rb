@@ -26,7 +26,7 @@ RSpec.describe AddNewestTimeEntries, type: :service do
 
       it 'adds the current time to the db' do
         described_class.new(all_time_entries).add_to_db
-        expect(Import.all.size).to be(1)
+        expect(RedmineImport.all.size).to be(1)
       end
     end
   end

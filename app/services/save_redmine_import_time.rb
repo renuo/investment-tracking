@@ -1,11 +1,11 @@
-class SaveImportTime
+class SaveRedmineImportTime
   def initialize
     @adjusted_current_time = nil
   end
 
   def save_current_time_to_db
     change_structure_of_time
-    Import.new(latest_import: @adjusted_current_time).save
+    RedmineImport.new(latest_import: @adjusted_current_time).save
   end
 
   private

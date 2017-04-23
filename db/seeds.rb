@@ -6,4 +6,4 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Import.create(latest_import: '2017-01-30T00:00:00Z')
+RedmineImport.create(latest_import: '2017-01-30T00:00:00Z')

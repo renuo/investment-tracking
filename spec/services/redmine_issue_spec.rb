@@ -8,7 +8,7 @@ RSpec.describe RedmineIssue do
   subject { described_class.new }
 
   before(:each) do
-    Import.create('latest_import' => '2017-01-30T00:00:00Z')
+    RedmineImport.create('latest_import' => '2017-01-30T00:00:00Z')
   end
 
   it 'takes the newest entries and sort them' do

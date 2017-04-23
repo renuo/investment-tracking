@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20170329093330) do
     t.datetime "updated_at",           null: false
   end
 
-  create_table "imports", force: :cascade do |t|
+  create_table "redmine_imports", force: :cascade do |t|
     t.string   "latest_import"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
