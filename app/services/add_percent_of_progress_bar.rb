@@ -1,7 +1,7 @@
 class AddPercentOfProgressBar
   def initialize(entries)
     @time_entries = entries
-    @proportion_of_investment_time = 4.0
+    @proportion_of_investment_time = InvestmentTracking::Application::PROPORTION_OF_INVESTMENT_TIME
     @limit_of_investment_time = InvestmentTracking::Application::MAXIMUM_OF_INVESTMENT_TIME
   end
 
