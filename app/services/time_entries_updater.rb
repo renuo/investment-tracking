@@ -1,4 +1,4 @@
-class AddNewestTimeEntries
+class TimeEntriesUpdater
   def initialize(time_entries)
     @new_time_entries = time_entries
     @grouped_time_entries = nil

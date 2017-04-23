@@ -35,6 +35,6 @@ class HomeController < ApplicationController
   end
 
   def aggregate_json_time_entries
-    AddNewestTimeEntries.new(json_entries)
+    TimeEntriesUpdater.new(json_entries)
   end
 end

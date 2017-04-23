@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AddNewestTimeEntries, type: :service do
+RSpec.describe TimeEntriesUpdater, type: :service do
   let(:all_time_entries) do
     [{ 'user' => { 'name' => 'Max', 'id' => 1 }, 'project' => { 'id' => 1 }, 'hours' => 10 },
      { 'user' => { 'name' => 'Max', 'id' => 1 }, 'project' => { 'id' => 140 }, 'hours' => 1 },
