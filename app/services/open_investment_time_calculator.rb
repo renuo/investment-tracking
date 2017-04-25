@@ -1,44 +1,44 @@
 class OpenInvestmentTimeCalculator
   def initialize(time_entries)
     @time_entries = time_entries
-    @aggregated_times_per_employee = nil
+    @updated_times_of_employees = nil
 
-    @employee_credentials = nil
-    @employee_id = nil
-    @employee_time_entries = nil
-    @employee = nil
-    @employee_investment_time = nil
+    @employee = {redmine_id: nil, entries: nil, investment_time: nil, employee_from_db: nil}
 
     @ratio_of_investment_time = InvestmentTracking::Application::PROPORTION_OF_INVESTMENT_TIME
     @limit_of_investment_time = InvestmentTracking::Application::MAXIMUM_OF_INVESTMENT_TIME
   end
 
   def add_time_entries_to_employees
-    @aggregated_times_per_employee = @time_entries.map do |time_entries_per_employee|
+    @updated_times_of_employees = @time_entries.map do |time_entries_per_employee|
       extract_information(time_entries_per_employee)
       add_entries_to_investment_time
       set_new_investment_time
-      @employee
+      @employee[:employee_from_db]
     end
   end
 
   private
 
   def extract_information(employee_entries)
-    @employee_credentials = employee_entries[0]
-    @employee_id = @employee_credentials[:redmine_user_id]
-    @employee_time_entries = employee_entries[1]
-    @employee = Employee.find_by(redmine_user_id: @employee_id)
-    @employee_investment_time = @employee.open_investment_time
+    employee_from_time_entries = employee_entries[0]
+    @employee[:redmine_id] = employee_from_time_entries[:redmine_user_id]
+    @employee[:entries] = employee_entries[1]
+
+    employee_from_db = Employee.find_by(redmine_user_id: @employee[:redmine_id])
+    @employee[:employee_from_db] = employee_from_db
+    @employee[:investment_time] = employee_from_db.open_investment_time
   end
 
   def add_entries_to_investment_time
-    @employee_time_entries.each do |time_entry|
+    @employee[:entries].each do |time_entry|
       if entry_is_investment_time(time_entry)
         subtract_investment_time(time_entry['hours'])
       else
         add_investment_time(time_entry['hours'])
-        @employee_investment_time = @limit_of_investment_time if @employee_investment_time > @limit_of_investment_time
+        if @employee[:investment_time] > @limit_of_investment_time
+          @employee[:investment_time] = @limit_of_investment_time
+        end
       end
     end
   end
@@ -48,14 +48,14 @@ class OpenInvestmentTimeCalculator
   end
 
   def subtract_investment_time(investment_hours)
-    @employee_investment_time -= investment_hours
+    @employee[:investment_time] -= investment_hours
   end
 
   def add_investment_time(worked_hours)
-    @employee_investment_time += worked_hours / @ratio_of_investment_time
+    @employee[:investment_time] += worked_hours / @ratio_of_investment_time
   end
 
   def set_new_investment_time
-    @employee.open_investment_time = @employee_investment_time
+    @employee[:employee_from_db].open_investment_time = @employee[:investment_time]
   end
 end
