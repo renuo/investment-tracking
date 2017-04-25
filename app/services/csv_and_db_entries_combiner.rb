@@ -1,11 +1,11 @@
-class CollectDataFromCsvAndDb
+class CsvAndDbEntriesCombiner
   def initialize(time_entries_csv)
     @time_entries_csv = time_entries_csv
     @concatenated_entries = []
     @employee = nil
   end
 
-  def merge
+  def combine_csv_and_db_entries
     @time_entries_csv.each do |entry|
       @employee = Employee.find_by(name: entry['name'])
       @concatenated_entries << { 'name' => @employee.name,
