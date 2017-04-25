@@ -3,8 +3,7 @@ class HomeController < ApplicationController
 
   def index
     aggregate_json_time_entries.add_to_db
-    combined_csv_and_db_data = collect_data_from_csv_and_db.combine_csv_and_db_entries
-    @data_to_display = AddPercentOfProgressBar.new(combined_csv_and_db_data).add_percent
+    @data_to_display = collect_data_from_csv_and_db.combine_csv_and_db_entries
   end
 
   def check
