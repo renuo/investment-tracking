@@ -1,6 +1,6 @@
 class OpenInvestmentTimeCalculator
   def initialize(time_entries)
-    @newest_time_entries = time_entries
+    @time_entries = time_entries
     @aggregated_times_per_employee = nil
 
     @employee_credentials = nil
@@ -14,7 +14,7 @@ class OpenInvestmentTimeCalculator
   end
 
   def add_time_entries_to_employees
-    @aggregated_times_per_employee = @newest_time_entries.map do |time_entries_per_employee|
+    @aggregated_times_per_employee = @time_entries.map do |time_entries_per_employee|
       extract_information(time_entries_per_employee)
       add_entries_to_investment_time
       set_new_investment_time
