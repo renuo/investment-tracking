@@ -1,7 +1,8 @@
 module HomeHelper
   def progress_bar_calculator(entry)
+    open_investment_time_in_hours = entry['open_investment_time']
     limit_of_investment_time = InvestmentTracking::Application::MAXIMUM_OF_INVESTMENT_TIME
-    (100.0 / limit_of_investment_time * entry['open_investment_time']).round(2)
+    (100.0 / limit_of_investment_time * open_investment_time_in_hours).round(2)
   end
 
   def progress_bar_status(entry)

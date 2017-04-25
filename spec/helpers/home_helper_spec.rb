@@ -1,7 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe HomeHelper, type: :helper do
-  describe 'progress_bar_status' do
+  describe '#progress_bar_calculator' do
+    it 'should calculate the right width of the progress bar' do
+      open_investment_time_in_hours = { 'open_investment_time' => 60 }
+      expect(helper.progress_bar_calculator(open_investment_time_in_hours)).to eq(75)
+    end
+  end
+
+  describe '#progress_bar_status' do
     it 'should return the progress-bar-danger if the quantity is more or equal than 60' do
       open_investment_time_in_hours = { 'open_investment_time' => 60 }
       expect(helper.progress_bar_status(open_investment_time_in_hours)).to eq('progress-bar-danger')
