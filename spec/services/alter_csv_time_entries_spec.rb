@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AlterCsvData, type: :service do
+RSpec.describe AlterCsvTimeEntries, type: :service do
   subject do
     described_class.new(double(:response, body:
       "User,2017-1,2017-2,Total time\nMax Muller,\"\",1.00,1.00\nErik Muster,1.00,1.00,2.00\n"),

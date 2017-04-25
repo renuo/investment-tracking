@@ -15,11 +15,11 @@ class HomeController < ApplicationController
   private
 
   def collect_data_from_csv_and_db
-    CsvAndDbEntriesCombiner.new(data_csv_service)
+    CsvAndDbEntriesCombiner.new(time_entries_csv_service)
   end
 
-  def data_csv_service
-    AlterCsvData.new(csv_investment_entries, csv_total_entries).alter_csv_to_final_data
+  def time_entries_csv_service
+    AlterCsvTimeEntries.new(csv_investment_entries, csv_total_entries).alter_csv_to_final_data
   end
 
   def csv_investment_entries

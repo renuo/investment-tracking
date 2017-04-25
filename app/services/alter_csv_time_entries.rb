@@ -1,4 +1,4 @@
-class AlterCsvData
+class AlterCsvTimeEntries
   def initialize(investment_time_entries, total_time_entries)
     @csv_investment_entries = investment_time_entries
     @csv_total_entries = total_time_entries
