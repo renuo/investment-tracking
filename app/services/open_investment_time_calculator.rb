@@ -3,7 +3,7 @@ class OpenInvestmentTimeCalculator
     @time_entries = time_entries
     @updated_times_of_employees = nil
 
-    @employee = {redmine_id: nil, entries: nil, investment_time: nil, employee_from_db: nil}
+    @employee = { redmine_id: nil, entries: nil, investment_time: nil, employee_from_db: nil }
 
     @ratio_of_investment_time = InvestmentTracking::Application::PROPORTION_OF_INVESTMENT_TIME
     @limit_of_investment_time = InvestmentTracking::Application::MAXIMUM_OF_INVESTMENT_TIME
