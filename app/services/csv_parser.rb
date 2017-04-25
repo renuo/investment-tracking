@@ -13,6 +13,7 @@ class CsvParser
     separate_csv
     extract_keys
     convert_to_hashes
+    encode_user_name
   end
 
   private
@@ -28,6 +29,12 @@ class CsvParser
   end
 
   def convert_to_hashes
-    @separated_csv_entries.map { |value| @keys.zip value }.map(&:to_h)
+    @separated_csv_entries = @separated_csv_entries.map { |value| @keys.zip value }.map(&:to_h)
+  end
+
+  def encode_user_name
+    @separated_csv_entries.each do |entry|
+      entry['User'] = entry['User'].force_encoding('ISO-8859-1').encode('UTF-8')
+    end
   end
 end
