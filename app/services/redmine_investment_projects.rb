@@ -1,4 +1,4 @@
-class InvestmentProjects
+class RedmineInvestmentProjects
   def initialize
     @renuo_investments = 138
     @investments_elf = 129
@@ -8,7 +8,7 @@ class InvestmentProjects
     @investments_inters = 140
   end
 
-  def all_investment_projects_id
+  def ids
     [@renuo_investments, @investments_elf, @redmine_communicator,
      @redmine_estimator, @investments_griffin, @investments_inters]
   end

@@ -44,7 +44,7 @@ class OpenInvestmentTimeCalculator
   end
 
   def entry_is_investment_time(time_entry)
-    InvestmentProjects.new.all_investment_projects_id.include? time_entry['project']['id']
+    RedmineInvestmentProjects.new.ids.include? time_entry['project']['id']
   end
 
   def subtract_investment_time(investment_hours)
