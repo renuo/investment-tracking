@@ -12,7 +12,7 @@ class OpenInvestmentTimeCalculator
   def add_time_entries_to_employees
     @updated_times_of_employees = @time_entries.map do |time_entries_per_employee|
       extract_information(time_entries_per_employee)
-      add_entries_to_investment_time
+      add_entries_to_existing_investment_time
       set_new_investment_time
       @employee[:employee_from_db]
     end
@@ -30,7 +30,7 @@ class OpenInvestmentTimeCalculator
     @employee[:investment_time] = employee_from_db.open_investment_time
   end
 
-  def add_entries_to_investment_time
+  def add_entries_to_existing_investment_time
     @employee[:entries].each do |time_entry|
       if entry_is_investment_time(time_entry)
         subtract_investment_time(time_entry['hours'])
