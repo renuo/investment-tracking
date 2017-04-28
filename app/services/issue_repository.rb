@@ -12,7 +12,6 @@ class IssueRepository
       fetch_json_with_new_entries
       sort_by_created_on
       extract_new_entries_from_json
-      entries_since_latest_import
     end
 
     @new_time_entries
