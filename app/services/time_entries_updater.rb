@@ -30,7 +30,7 @@ class TimeEntriesUpdater
   end
 
   def add_time_entries_to_employees
-    @employees = OpenInvestmentTimeCalculator.new(@grouped_time_entries).add_time_entries_to_employees
+    @employees = OpenInvestmentTimeCalculator.new(@grouped_time_entries).sum_entries_rely_on_project_id
   end
 
   def save_information_to_db
