@@ -1,4 +1,4 @@
-class CSVService
+class CsvService
   def time_entries
     investment_params = RedmineRequestCsv::INVESTMENT_PARAMS
     investment_entries = get_entries_from_http_request(investment_params)
