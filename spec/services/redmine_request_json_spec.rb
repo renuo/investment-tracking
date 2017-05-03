@@ -9,7 +9,7 @@ RSpec.describe RedmineRequestJson do
       stub = stub_request(:any, 'https://redmine.renuo.ch/time_entries.json?key=' + ENV['REDMINE_API_KEY'] +
         '&limit=100&offset=0').to_return(body: '{"time_entries": {"user_name": "Max Meier"}}')
 
-      subject.fetch_json_from_redmine
+      expect(subject.fetch_json_from_redmine).to eq('user_name' => 'Max Meier')
       expect(stub).to have_been_requested
     end
   end
