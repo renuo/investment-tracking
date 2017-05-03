@@ -26,4 +26,13 @@ RSpec.describe HomeHelper, type: :helper do
       expect(helper.progress_bar_status(open_investment_time_in_hours)).to eq('progress-bar-success')
     end
   end
+
+  describe '#proportion_used_to_worked' do
+    it 'calculates the proportion from used investment hours to worked hours' do
+      entry = { 'worked_investment_hours' => 2.0, 'worked_total_hours' => 10.0 }
+      expect(helper.proportion_used_to_worked(entry)).to eq(20.0)
+    end
+  end
 end
+
+# (entry['worked_investment_hours'] / entry['worked_total_hours'] * 100).round(2)

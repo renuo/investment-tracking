@@ -12,7 +12,7 @@ RSpec.describe HomeController, type: :controller do
       stub_request(:get, %r{/redmine.renuo.ch/time_entries/report.csv})
         .to_return(status: 200, body: 'Test', headers: {})
 
-      RedmineImport.create(latest_import: '2017-04-10T00:00:00Z')
+      RedmineImport.create(created_at: 'Mon, 10 April 2017 00:00:00 CEST +02:00')
     end
 
     context 'not being logged in' do

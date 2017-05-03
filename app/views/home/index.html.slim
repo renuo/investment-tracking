@@ -11,7 +11,8 @@
         .col-md-2
           p Your used investment time:
         hr
-    - @data_to_display.each do |entries|
+
+    - @employee.each do |entries|
       .row
         .col-md-2
           p = entries['name']
@@ -21,7 +22,7 @@
             style="width: #{progress_bar_calculator(entries)}%"]
               = entries['open_investment_time'].to_s + 'h'
         .col-md-2
-          p = entries['proportion_used_to_worked'].to_s + '%'
+          p = proportion_used_to_worked(entries).to_s + '%'
         .col-md-2
           p = entries['worked_investment_hours'].to_s + 'h'
 
