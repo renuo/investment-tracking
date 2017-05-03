@@ -5,23 +5,23 @@ class TimeEntriesUpdater
     @employees = nil
   end
 
-  def add_to_db
-    sort_and_group_entries
+  def save
+    group_entries_by_employee
     create_missing_employees_in_db
-    add_time_entries_to_employees
-    save_information_to_db
+    update_open_investment_time
+    save_current_time_to_db
   end
 
   private
 
-  def sort_and_group_entries
-    @grouped_time_entries = TimeEntriesPreparator.new(@new_time_entries).sort_and_group
+  def group_entries_by_employee
+    @grouped_time_entries = @new_time_entries.group_by do |time_entry|
+      { redmine_user_id: time_entry['user']['id'], name: time_entry['user']['name'] }
+    end
   end
 
   def create_missing_employees_in_db
-    @grouped_time_entries.map do |time_entries_per_employee|
-      user = time_entries_per_employee.first
-
+    @grouped_time_entries.map do |user, _time_entries|
       Employee.find_or_create_by!(redmine_user_id: user[:redmine_user_id]) do |employee|
         employee.name = user[:name]
         employee.open_investment_time = 0
@@ -29,22 +29,15 @@ class TimeEntriesUpdater
     end
   end
 
-  def add_time_entries_to_employees
-    @employees = OpenInvestmentTimeCalculator.new(@grouped_time_entries).sum_entries_rely_on_project_id
-  end
+  def update_open_investment_time
+    employees = OpenInvestmentTimeCalculator.new.sum_entries_rely_on_project_id(@grouped_time_entries)
 
-  def save_information_to_db
-    update_times_of_each_employee
-    save_current_time_to_db
-  end
-
-  def update_times_of_each_employee
     Employee.transaction do
-      @employees.each(&:save!)
+      employees.each(&:save!)
     end
   end
 
   def save_current_time_to_db
-    SaveRedmineImportTime.new.save_current_time_to_db
+    RedmineImport.new.save
   end
 end

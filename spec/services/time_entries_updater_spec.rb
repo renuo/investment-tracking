@@ -17,7 +17,7 @@ RSpec.describe TimeEntriesUpdater, type: :service do
       end
 
       it 'adds the new entries to the db' do
-        described_class.new(all_time_entries).add_to_db
+        described_class.new(all_time_entries).save
         expect(Employee.exists?(redmine_user_id: 1)).to be true
         expect(Employee.exists?(redmine_user_id: 2)).to be true
         expect(Employee.exists?(redmine_user_id: 3)).to be true
@@ -26,21 +26,21 @@ RSpec.describe TimeEntriesUpdater, type: :service do
 
     context 'if database is empty' do
       it 'adds the new entries to the db' do
-        described_class.new(all_time_entries).add_to_db
+        described_class.new(all_time_entries).save
         expect(Employee.exists?(redmine_user_id: 1)).to be true
         expect(Employee.exists?(redmine_user_id: 2)).to be true
         expect(Employee.exists?(redmine_user_id: 3)).to be true
       end
 
       it 'adds the new investment time to the user' do
-        described_class.new(all_time_entries).add_to_db
+        described_class.new(all_time_entries).save
         expect(Employee.find_by(redmine_user_id: 1).open_investment_time).to be(1.5)
         expect(Employee.find_by(redmine_user_id: 2).open_investment_time).to be(-2.0)
         expect(Employee.find_by(redmine_user_id: 3).open_investment_time).to be(-3.0)
       end
 
       it 'adds the current time to the db' do
-        described_class.new(all_time_entries).add_to_db
+        described_class.new(all_time_entries).save
         expect(RedmineImport.all.size).to be(1)
       end
     end
