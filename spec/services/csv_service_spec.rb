@@ -27,7 +27,7 @@ RSpec.describe CsvService do
       end
     end
 
-    context 'investment time is not ktane' do
+    context 'investment time is not taken' do
       it 'returns the time entries' do
         http_response_investment_time = "User,Total time\nTotal time,0.00"
 
