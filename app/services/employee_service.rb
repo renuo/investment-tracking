@@ -14,7 +14,7 @@ class EmployeeService
   end
 
   def users_report
-    @csv_service ||= CSVService.new
+    @csv_service ||= CsvService.new
   end
 
   def add_open_investment_time(time_entries)

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CSVService do
+RSpec.describe CsvService do
   subject { described_class.new }
 
   before(:each) do
