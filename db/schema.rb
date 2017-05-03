@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170329093330) do
+ActiveRecord::Schema.define(version: 20170502150611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,9 +24,8 @@ ActiveRecord::Schema.define(version: 20170329093330) do
   end
 
   create_table "redmine_imports", force: :cascade do |t|
-    t.string   "latest_import"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

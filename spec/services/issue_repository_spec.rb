@@ -13,7 +13,7 @@ RSpec.describe IssueRepository do
   subject { described_class.new }
 
   before(:each) do
-    RedmineImport.create('latest_import' => '2017-01-30T00:00:00Z')
+    RedmineImport.create('created_at' => 'Mon, 30 Jan 2017 00:00:00 CEST +02:00')
   end
 
   describe '#entries_since_latest_import' do
