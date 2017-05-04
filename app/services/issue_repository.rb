@@ -30,19 +30,13 @@ class IssueRepository
 
   def extract_new_entries_from_json
     @json_from_redmine.each do |entry|
-      created_on = parse_date(entry['created_on'])
+      created_on = entry['created_on'].to_datetime
       if created_on > @date_of_latest_import
         @new_time_entries << entry
       else
         @new_entries_left = false
         break
       end
-    end
-  end
-
-  def parse_date(date)
-    Time.use_zone('UTC') do
-      Date.strptime(date, I18n.translate('date.formats.redmine'))
     end
   end
 end
