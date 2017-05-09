@@ -5,7 +5,7 @@ class TimeEntriesUpdater
     @employees = nil
   end
 
-  def create_update_save
+  def update_user_and_save
     group_entries_by_employee
     create_missing_employees_in_db
     update_open_investment_time
