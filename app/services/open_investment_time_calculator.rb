@@ -8,10 +8,9 @@ class OpenInvestmentTimeCalculator
 
   def sum_entries_rely_on_project_id(grouped_time_entries)
     grouped_time_entries.map do |user, entries|
-      user_entries = entries
       employee = Employee.find_by(redmine_user_id: user[:redmine_user_id])
 
-      calculate_open_investment_time(employee, user_entries)
+      calculate_open_investment_time(employee, entries)
     end
   end
 
