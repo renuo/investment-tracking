@@ -4,7 +4,7 @@ RSpec.describe HomeHelper, type: :helper do
   describe '#progress_bar_calculator' do
     it 'should calculate the right width of the progress bar' do
       open_investment_time_in_hours = { 'open_investment_time' => 60 }
-      expect(helper.progress_bar_calculator(open_investment_time_in_hours)).to eq(75)
+      expect(helper.amount_of_filled_progress_bar(open_investment_time_in_hours)).to eq(75)
     end
   end
 
