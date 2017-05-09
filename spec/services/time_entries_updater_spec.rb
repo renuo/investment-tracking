@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe TimeEntriesUpdater, type: :service do
+RSpec.describe TimeEntriesUpdater do
   let(:all_time_entries) do
     [{ 'user' => { 'name' => 'Max', 'id' => 1 }, 'project' => { 'id' => 1 }, 'hours' => 10 },
      { 'user' => { 'name' => 'Max', 'id' => 1 }, 'project' => { 'id' => 140 }, 'hours' => 1 },
@@ -42,8 +42,11 @@ RSpec.describe TimeEntriesUpdater, type: :service do
       end
 
       it 'adds the current time to the db' do
-        described_class.new(all_time_entries).update_user_and_save
-        expect(RedmineImport.all.size).to be(1)
+        expect do
+          described_class.new(all_time_entries).update_user_and_save
+        end.to change {
+          RedmineImport.all.size
+        }.by(1)
       end
     end
   end
