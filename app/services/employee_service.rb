@@ -4,7 +4,7 @@ class EmployeeService
   end
 
   def all_with_totals
-    add_open_investment_time(users_report.time_entries)
+    append_open_investment_time(users_report.time_entries)
   end
 
   private
@@ -17,7 +17,7 @@ class EmployeeService
     @csv_service ||= CsvService.new
   end
 
-  def add_open_investment_time(time_entries)
+  def append_open_investment_time(time_entries)
     time_entries.map do |entry|
       employee = Employee.find_by(name: entry['name'])
       entry.merge('open_investment_time' => employee.open_investment_time.round(2))
