@@ -13,10 +13,10 @@ class RedmineRequestCsv
   private
 
   def create_url(params)
-    URI('https://redmine.renuo.ch/time_entries/report.csv?' + query(params) + key)
+    URI('https://redmine.renuo.ch/time_entries/report.csv?' + query(params) + api_key)
   end
 
-  def key
+  def api_key
     '&key=' + ENV['REDMINE_API_KEY']
   end
 
