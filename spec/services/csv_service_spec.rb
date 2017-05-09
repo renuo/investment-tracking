@@ -15,7 +15,7 @@ RSpec.describe CsvService do
 
   describe '#time_entries' do
     context 'investment time is taken' do
-      it 'returns the time entries' do
+      it 'adds the taken investment time to the employee' do
         http_response_investment_time = "User,Total time\nMax Muller,4.00\nHans Meier,2.00\nTotal time,6.00"
 
         stub_request(:any, @url_investment_time).to_return(body: http_response_investment_time)
@@ -28,7 +28,7 @@ RSpec.describe CsvService do
     end
 
     context 'investment time is not taken' do
-      it 'returns the time entries' do
+      it 'does not add any investment time to the employee' do
         http_response_investment_time = "User,Total time\nTotal time,0.00"
 
         stub_request(:any, @url_investment_time).to_return(body: http_response_investment_time)
