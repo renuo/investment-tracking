@@ -3,8 +3,8 @@ class CsvParser
 
   PARSER_ERROR_MESSAGE = 'Malformed CSV, please use comma delimiters (Redmine language setting?)'.freeze
 
-  def initialize(request)
-    @csv_body = request.body
+  def initialize(body)
+    @body = body
     @separated_csv_entries = nil
     @keys = nil
   end
@@ -18,7 +18,7 @@ class CsvParser
   private
 
   def separate_csv
-    @separated_csv_entries = CSV.parse(@csv_body, col_sep: ',')
+    @separated_csv_entries = CSV.parse(@body, col_sep: ',')
   rescue CSV::MalformedCSVError
     raise PARSER_ERROR_MESSAGE
   end
@@ -28,6 +28,6 @@ class CsvParser
   end
 
   def convert_to_hashes
-    @separated_csv_entries.map { |value| @keys.zip value }.map(&:to_h)
+    @separated_csv_entries = @separated_csv_entries.map { |value| @keys.zip value }.map(&:to_h)
   end
 end

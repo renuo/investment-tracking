@@ -1,6 +1,6 @@
 ---
 NestedIterators:
-  max_allowed_nesting: 2
+  max_allowed_nesting: 3
 IrresponsibleModule:
   enabled: false
 DuplicateMethodCall:

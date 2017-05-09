@@ -11,7 +11,6 @@ As our company gives us investment time (20% of our total worked hours) we have 
 ## Edge Cases
 
 * Start date of accumulation is fixed
-* Accumulation over 80h of open investment time
 * Tickets which are invisible to the investment tracker (e.g. new ones)
 * Excluded tickets (e.g. sickness)
 
