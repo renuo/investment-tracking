@@ -9,7 +9,8 @@ RSpec.describe 'home/index.html.slim', type: :view do
       render
 
       expect(rendered).to include 'Max Muster'
-      expect(rendered).to include '1'
+      expect(rendered).to have_selector('.progress-bar-success[style="width: 1.25%"]')
+      expect(rendered).to include '0h'
     end
   end
 end
