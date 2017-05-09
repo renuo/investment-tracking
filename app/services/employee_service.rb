@@ -1,6 +1,6 @@
 class EmployeeService
   def update_all_entries
-    TimeEntriesUpdater.new(new_time_entries).save
+    TimeEntriesUpdater.new(new_time_entries).create_update_save
   end
 
   def all_with_totals
