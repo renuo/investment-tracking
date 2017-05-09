@@ -14,6 +14,7 @@ RSpec.describe IssueRepository do
 
   before(:each) do
     RedmineImport.create('created_at' => 'Mon, 30 Jan 2017 00:00:00 CEST +02:00')
+    allow(ENV).to receive(:[]).with('REDMINE_API_KEY').and_return('')
   end
 
   describe '#entries_since_latest_import' do
