@@ -2,7 +2,6 @@ class HomeController < ApplicationController
   http_basic_authenticate_with name: ENV['BASIC_AUTH_USER'], password: ENV['BASIC_AUTH_PASSWORD'], except: :check
 
   def index
-    employee_service.update_all_entries
     @employee = employee_service.all_with_totals
   end
 
