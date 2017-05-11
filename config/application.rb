@@ -28,5 +28,6 @@ module InvestmentTracking
 
     MAXIMUM_OF_INVESTMENT_TIME = 80
     PROPORTION_OF_INVESTMENT_TIME = 4.0
+    START_DATE = '2017-01-30'.freeze
   end
 end

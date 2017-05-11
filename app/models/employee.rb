@@ -1,4 +1,6 @@
 class Employee < ApplicationRecord
+  has_paper_trail
+
   validates :name, presence: true
   validates :redmine_user_id, presence: true
   validates :open_investment_time, numericality:
