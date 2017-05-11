@@ -16,4 +16,6 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.include AuthHelper, type: :controller
+
+  config.use_transactional_fixtures = true
 end
