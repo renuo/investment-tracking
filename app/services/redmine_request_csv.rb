@@ -4,7 +4,6 @@ class RedmineRequestCsv
 
   def initialize(investment_params = [])
     @url = create_url(investment_params)
-    @start_date = '2017-01-30'
   end
 
   def execute_request
@@ -31,7 +30,8 @@ class RedmineRequestCsv
 
   def query(params = [])
     URI.encode_www_form([['utf8', '✓'], ['criteria[]', 'user'],
-                         ['f[]', 'spent_on'], ['op[spent_on]', '>='], ['v[spent_on][]', @start_date],
+                         ['f[]', 'spent_on'], ['op[spent_on]', '>='],
+                         ['v[spent_on][]', InvestmentTracking::Application::START_DATE],
                          ['f[]', ''],
                          ['c[]', 'project'], ['c[]', 'spent_on'], ['c[]', 'user'],
                          ['c[]', 'activity'], ['c[]', 'issue'], ['c[]', 'comments'],
