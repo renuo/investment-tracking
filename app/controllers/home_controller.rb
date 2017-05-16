@@ -3,6 +3,10 @@ class HomeController < ApplicationController
 
   def index
     @employee = employee_service.all_with_totals
+    respond_to do |format|
+      format.html
+      format.json { render json: { employees: @employee } }
+    end
   end
 
   def check
