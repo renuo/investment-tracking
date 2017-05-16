@@ -6,8 +6,8 @@ This Project fetches the time entries from Redmine, aggregates and calculates th
 
 ## Motivation
 
-As our company gives us investment time (20% of our total worked hours) we have time to educate ourselves. 
-Since we don't use this time regularly we have the opportunity to accumulate it. 
+As our company gives us investment time (20% of our total worked hours) we have time to educate ourselves.
+Since we don't use this time regularly we have the opportunity to accumulate it.
 Therefore we wanted to have a tool which keeps track of our open investment time.
 
 ## Edge Cases

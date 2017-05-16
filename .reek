@@ -21,6 +21,9 @@ UtilityFunction:
    enabled: false
   FeatureEnvy:
    enabled: false
+"app/controllers":
+  InstanceVariableAssumption:
+   enabled: false
 
 exclude_paths:
   - tmp
