@@ -3,5 +3,8 @@ Rails.application.routes.draw do
   get 'home/index'
 
   root 'home#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  constraints format: :json do
+    get 'api/v1/data', to: 'home#index', as: :data
+  end
 end

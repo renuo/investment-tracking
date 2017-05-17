@@ -1,0 +1,33 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Investment Tracking",
+		"_postman_id": "4dafe74c-df57-8e72-058c-b08ec7ffc5e5",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/api/v1/data.json",
+			"request": {
+				"url": "http://localhost:3000/api/v1/data.json",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic cmVudW86cGFzc3dvcmQ=",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
