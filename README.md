@@ -63,7 +63,7 @@ bin/run
 
 ## APIs
 
-JSON APIs are provided. Check under the `doc` folder  the Postman collection to start using them.
+JSON APIs are provided. Check under the `doc` folder the Postman collection to start using them.
 
 ## Copyright
 
