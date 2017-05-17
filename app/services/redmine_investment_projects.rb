@@ -1,6 +1,7 @@
 class RedmineInvestmentProjects
   INVESTMENT_PROJECTS = {
     renuo_investments: 138,
+    dashboard: 155,
     gifcoin: 152,
     investments_elf: 129,
     redmine_communicator: 141,
