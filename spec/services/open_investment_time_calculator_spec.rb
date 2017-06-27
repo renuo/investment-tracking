@@ -14,13 +14,22 @@ RSpec.describe OpenInvestmentTimeCalculator, type: :service do
           { redmine_user_id: 2, name: 'Hans Meier' } => [{ 'user' => { 'name' => 'Hans Meier', 'id' => 2 },
                                                            'project' => { 'id' => 129 }, 'hours' => 2 },
                                                          { 'user' => { 'name' => 'Hans Meier', 'id' => 2 },
-                                                           'project' => { 'id' => 140 }, 'hours' => 2 }] }
+                                                           'project' => { 'id' => 140 }, 'hours' => 2 },
+                                                         { 'user' => { 'name' => 'Hans Meier', 'id' => 2 },
+                                                           'project' => { 'id' => 1 }, 'hours' => 2,
+                                                           'issue' => { 'id' => 6199 } },
+                                                         { 'user' => { 'name' => 'Hans Meier', 'id' => 2 },
+                                                           'project' => { 'id' => 1 }, 'hours' => 2,
+                                                           'issue' => { 'id' => 1 } },
+                                                         { 'user' => { 'name' => 'Hans Meier', 'id' => 2 },
+                                                           'project' => { 'id' => 1 }, 'hours' => 2,
+                                                           'issue' => { 'id' => 2949 } }] }
       end
 
       it 'adds the time entries to the existing investment time of the db' do
         updated_employees = described_class.new.sum_entries_rely_on_project_id(time_entries)
         expect(updated_employees[0].open_investment_time).to be(4.5)
-        expect(updated_employees[1].open_investment_time).to be(75.0)
+        expect(updated_employees[1].open_investment_time).to be(75.5)
       end
     end
 
