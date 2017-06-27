@@ -32,6 +32,7 @@ class RedmineRequestCsv
     URI.encode_www_form([['utf8', '✓'], ['criteria[]', 'user'],
                          ['f[]', 'spent_on'], ['op[spent_on]', '>='],
                          ['v[spent_on][]', InvestmentTracking::Application::START_DATE],
+                         ['f[]]', 'issue.cf_19'], ['op[issue.cf_19]', '!'], ['v[issue.cf_19][]', '0'],
                          ['f[]', ''],
                          ['c[]', 'project'], ['c[]', 'spent_on'], ['c[]', 'user'],
                          ['c[]', 'activity'], ['c[]', 'issue'], ['c[]', 'comments'],
