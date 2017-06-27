@@ -1,4 +1,4 @@
-desc 'This drops the database every sunday evening so the times are recalculated one a week'
+desc 'This drops the database every sunday evening so that the times are recalculated once a week'
 
 task database_dropper: :environment do
   Employee.delete_all
