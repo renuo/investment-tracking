@@ -20,7 +20,8 @@ RSpec.describe IssueRepository do
   describe '#entries_since_latest_import' do
     context 'latest import time is greater than any created on of each new time entry' do
       it 'makes the request once, takes the newest entries and sort them' do
-        stub = stub_request(:any, 'https://redmine.renuo.ch/time_entries.json?key=&limit=100&offset=0')
+        stub = stub_request(:any, 'https://redmine.renuo.ch/time_entries.json?key=' + ENV['REDMINE_API_KEY'] +
+          '&limit=100&offset=0' + '&op%5Bissue.cf_20%5D=!&v%5Bissue.cf_20%5D%5B0%5D=0&f%5B%5D=issue.cf_20&')
                .to_return(body: entries_with_created_on_greater_than_latest_import)
 
         expect(subject.entries_since_latest_import)
@@ -32,9 +33,11 @@ RSpec.describe IssueRepository do
 
     context 'latest import time is smaller than any created on of each new time entry' do
       it 'makes the request once, takes the newest entries and sort them' do
-        stub_request(:any, 'https://redmine.renuo.ch/time_entries.json?key=&limit=100&offset=0')
+        stub_request(:any, 'https://redmine.renuo.ch/time_entries.json?key=' + ENV['REDMINE_API_KEY'] +
+          '&limit=100&offset=0' + '&op%5Bissue.cf_20%5D=!&v%5Bissue.cf_20%5D%5B0%5D=0&f%5B%5D=issue.cf_20&')
           .to_return(body: entries_with_created_on_smaller_than_latest_import)
-        second_request = stub_request(:any, 'https://redmine.renuo.ch/time_entries.json?key=&limit=100&offset=100')
+        second_request = stub_request(:any, 'https://redmine.renuo.ch/time_entries.json?key=' + ENV['REDMINE_API_KEY'] +
+          '&limit=100&offset=100' + '&op%5Bissue.cf_20%5D=!&v%5Bissue.cf_20%5D%5B0%5D=0&f%5B%5D=issue.cf_20&')
                          .to_return(body: entries_with_created_on_greater_than_latest_import)
 
         expect(subject.entries_since_latest_import)
