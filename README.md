@@ -14,7 +14,6 @@ Therefore we wanted to have a tool which keeps track of our open investment time
 
 * Start date of accumulation is fixed
 * Tickets which are invisible to the investment tracker (e.g. new ones)
-* Excluded tickets (e.g. sickness)
 
 ## Installation
 

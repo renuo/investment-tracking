@@ -9,7 +9,7 @@ RSpec.describe TimeEntriesUpdater do
      { 'user' => { 'name' => 'Duda', 'id' => 3 }, 'project' => { 'id' => 140 }, 'hours' => 3 }]
   end
 
-  describe '#save' do
+  describe '#update_user_and_save' do
     context 'if database is not empty' do
       before(:each) do
         Employee.create(redmine_user_id: 1, name: 'Max', open_investment_time: 2)
