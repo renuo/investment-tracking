@@ -37,6 +37,6 @@ class RedmineRequestCsv
                          ['c[]', 'activity'], ['c[]', 'issue'], ['c[]', 'comments'],
                          ['c[]', 'hours'],
                          %w(columns month),
-                         ['criteria[]', '']].push(*params))
+                         ['criteria[]', '']].push(*params) + NotAffectingInvestment.new.array_queries)
   end
 end
