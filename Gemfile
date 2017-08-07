@@ -12,7 +12,6 @@ gem 'uglifier'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'webmock'
-gem 'paper_trail'
 
 group :development do
   gem 'listen'
