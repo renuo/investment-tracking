@@ -21,6 +21,7 @@ Therefore we wanted to have a tool which keeps track of our open investment time
 git clone git@github.com:renuo/investment-tracking.git
 cd investment-tracking
 bin/setup
+rake database_dropper
 ```
 
 config/application.yml
@@ -31,6 +32,10 @@ config/application.yml
 db/seeds.rb
 
 * Set the start date from which on you want to start fetching the time entries
+
+rake database_dropper
+
+* Setups database. Only execute after release
 
 ## Tests / Code Linting / Vulnerability Check
 
