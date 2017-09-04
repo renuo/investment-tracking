@@ -52,9 +52,5 @@ Dir.chdir APP_ROOT do
     system 'ln -s ../../bin/check .git/hooks/pre-commit'
   end
 
-  run('Setting dev host in /etc/hosts') do
-    system 'grep \'investment-tracking.dev\' /etc/hosts || echo \'127.0.0.1 investment-tracking.dev\' | sudo tee -a /etc/hosts'
-  end
-
   run('Running checks') { abort('bin/check failed') unless system('bin/check') }
 end
